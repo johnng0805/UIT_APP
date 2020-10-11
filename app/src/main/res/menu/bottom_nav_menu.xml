@@ -1,3 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"></menu>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/feature_icon"
+        android:enabled="true"
+        android:icon="@drawable/feature_24px_outlined"
+        android:title="Features"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/search_icon"
+        android:enabled="true"
+        android:icon="@drawable/search_24px_outlined"
+        android:title="Search"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/course_icon"
+        android:enabled="true"
+        android:icon="@drawable/course_24px_outlined"
+        android:title="Courses"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/cart_icon"
+        android:enabled="true"
+        android:icon="@drawable/cart_24px_outlined"
+        android:title="Cart"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/account_icon"
+        android:enabled="true"
+        android:icon="@drawable/account_circle_24px_outlined"
+        android:title="Account"
+        app:showAsAction="ifRoom"/>
+
+</menu>
