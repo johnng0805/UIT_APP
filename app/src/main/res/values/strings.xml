@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">My App</string>
+    <string name="login_text">LOGIN</string>
+    <string name="register_text">REGISTER</string>
+    <string name="forgot_password_text">Forgot password\?</string>
+    <string name="logo">Logo</string>
+    <string name="strphone">Phone Number:</string>
+    <string name="strdescript">Description:</string>
+    <string name="uit">UIT</string>
+    <string name="strname">Name:</string>
+    <string name="strgender">Gender:</string>
+    <string name="straddress">Address:</string>
+    <string name="strmail">Email:</string>
+    <string name="strpass">Password:</string>
+    <string name="strcfpass">Confirm Password:</string>
+    <string name="LoginBacktext">If you already have an account, press here to login</string>
+    <string name="img_logo">UIT Logo</string>
+    <string name="img_logo_text">UIT Logo Text</string>
+    <string name="login_name_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+
+</resources>

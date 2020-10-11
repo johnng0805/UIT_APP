@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:id="@+id/login_background"
+    android:background="@drawable/login_screen"
+    tools:context=".LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="220dp"
+        android:layout_height="227dp"
+        android:id="@+id/login_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login_ctn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="150dp"
+            android:id="@+id/uit_logo"
+            android:background="@drawable/uit_logo"
+            android:contentDescription="@string/img_logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/uit_logo_text" />
+
+        <ImageView
+            android:layout_width="220dp"
+            android:layout_height="77dp"
+            android:id="@+id/uit_logo_text"
+            android:background="@drawable/uit_logo_text"
+            android:contentDescription="@string/img_logo_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uit_logo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/login_ctn"
+        android:background="@drawable/ctn_login_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_name_input"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="@id/login_ctn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/text_name_edit"
+                android:inputType="textEmailAddress"
+                android:hint="@string/login_name_hint"
+                android:autoSizeTextType="uniform" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_password_input"
+            app:layout_constraintTop_toBottomOf="@id/text_name_input"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:hint="@string/login_password_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/text_password_edit"
+                android:inputType="textPassword"
+                android:autoSizeTextType="uniform" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/register_text"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/text_password_input"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/register_text"
+            android:textColor="@color/colorText"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/forgot_password_text"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/register_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/forgot_password_text"
+            android:textColor="@color/colorText"
+            android:gravity="center_horizontal"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:id="@+id/login_btn"
+            android:layout_marginTop="15dp"
+            android:text="@string/login_text"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/colorBtnText"
+            android:background="@drawable/login_button"
+            app:layout_constraintTop_toBottomOf="@id/forgot_password_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:elevation="4dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
