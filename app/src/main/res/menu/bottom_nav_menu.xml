@@ -5,35 +5,35 @@
         android:id="@+id/feature_icon"
         android:enabled="true"
         android:icon="@drawable/feature_24px_outlined"
-        android:title="Features"
+        android:title="@string/ic_feature_text"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/search_icon"
         android:enabled="true"
         android:icon="@drawable/search_24px_outlined"
-        android:title="Search"
+        android:title="@string/ic_search_text"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/course_icon"
         android:enabled="true"
         android:icon="@drawable/course_24px_outlined"
-        android:title="Courses"
+        android:title="@string/ic_courses_text"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/cart_icon"
         android:enabled="true"
         android:icon="@drawable/cart_24px_outlined"
-        android:title="Cart"
+        android:title="@string/ic_cart_text"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/account_icon"
         android:enabled="true"
         android:icon="@drawable/account_circle_24px_outlined"
-        android:title="Account"
+        android:title="@string/ic_account_text"
         app:showAsAction="ifRoom"/>
 
 </menu>

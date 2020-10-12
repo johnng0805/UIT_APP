@@ -13,5 +13,6 @@
     <color name="black">#000000</color>
     <color name="gray">#8c8c8c</color>
     <color name="colorText">#2F80ED</color>
+    <color name="colorHighlightedText">#1855B1</color>
 
 </resources>
