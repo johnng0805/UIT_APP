@@ -18,6 +18,8 @@
     <string name="img_logo_text">UIT Logo Text</string>
     <string name="login_name_hint">Email</string>
     <string name="login_password_hint">Password</string>
+    <string name="account_acti_title">Personal Information</string>
+    <string name="save_text">Save</string>
 
     <!--Icon Title-->
     <string name="ic_feature_text">Features</string>
