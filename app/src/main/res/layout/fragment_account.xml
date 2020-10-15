@@ -59,8 +59,8 @@
 
         <Button
             android:id="@+id/button12"
-            android:layout_width="130dp"
-            android:layout_height="50dp"
+            android:layout_width="116dp"
+            android:layout_height="52dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/button_logout_homescreen"
             app:layout_constraintBottom_toBottomOf="parent"
