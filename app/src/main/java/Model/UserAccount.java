@@ -116,4 +116,6 @@ public class UserAccount implements Serializable {
         this.diachia = diachia;
         this.matkhau = matkhau;
     }
+
+    public UserAccount(){};
 }

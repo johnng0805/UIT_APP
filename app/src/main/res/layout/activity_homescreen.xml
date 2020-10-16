@@ -21,7 +21,11 @@
         app:labelVisibilityMode="labeled"
         app:itemIconTint="@color/colorText"
         app:itemTextColor="@color/colorText"
-        app:itemRippleColor="@color/colorHighlightedText">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:itemRippleColor="@color/colorHighlightedText"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -164,7 +164,7 @@
             android:id="@+id/back_button"
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:background="@drawable/BackButton"
+            android:background="@drawable/btn_back"
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintTop_toTopOf="parent"
