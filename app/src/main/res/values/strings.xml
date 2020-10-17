@@ -21,6 +21,13 @@
     <string name="account_acti_title">Personal Information</string>
     <string name="save_text">Save</string>
 
+    <!--Account Fragment-->
+    <string name="logout">LOGOUT</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="security">Security</string>
+    <string name="payment_history">Payment History</string>
+
     <!--Icon Title-->
     <string name="ic_feature_text">Features</string>
     <string name="ic_search_text">Search</string>
