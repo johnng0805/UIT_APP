@@ -20,8 +20,6 @@ public class HomeScreenActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     public UserAccount userAccount = new UserAccount();
 
-    final Fragment accountFrag = new AccountFragment();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -40,7 +38,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.account_icon:
-                        fragment = accountFrag;
+                        fragment = new AccountFragment(userAccount);
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
