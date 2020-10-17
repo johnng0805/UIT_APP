@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:paddingStart="30dp"
     android:paddingEnd="30dp"
+    android:paddingVertical="30dp"
+    android:clipToPadding="false"
     tools:context=".AccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +23,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="120dp"
             android:id="@+id/cardview_cover"
             app:cardCornerRadius="@dimen/corner_radius"
             app:layout_constraintTop_toTopOf="@id/constraintLayout_ctn"
@@ -30,7 +32,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="match_parent"
                 android:src="@drawable/default_cover"
                 android:scaleType="centerCrop"
                 android:id="@+id/imgview_cover"
@@ -46,7 +48,7 @@
             app:layout_constraintTop_toTopOf="@id/cardview_cover"
             app:layout_constraintLeft_toLeftOf="@id/constraintLayout_ctn"
             app:layout_constraintRight_toRightOf="@id/constraintLayout_ctn"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="60dp">
 
             <ImageView
                 android:id="@+id/imgview_avatar"
@@ -86,13 +88,16 @@
             app:layout_constraintRight_toRightOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="220dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_ctn"
             app:layout_constraintTop_toBottomOf="@id/account_email"
             app:layout_constraintBottom_toTopOf="@id/logout_btn"
             app:layout_constraintLeft_toLeftOf="@id/constraintLayout_ctn"
-            app:layout_constraintRight_toRightOf="@id/constraintLayout_ctn">
+            app:layout_constraintRight_toRightOf="@id/constraintLayout_ctn"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:clipToPadding="false">
 
             <Button
                 android:id="@+id/person_information_btn"
