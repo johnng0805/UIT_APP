@@ -28,6 +28,9 @@
     <string name="security">Security</string>
     <string name="payment_history">Payment History</string>
 
+    <!--Activity Account Info-->
+    <string name="back">Back</string>
+
     <!--Icon Title-->
     <string name="ic_feature_text">Features</string>
     <string name="ic_search_text">Search</string>
