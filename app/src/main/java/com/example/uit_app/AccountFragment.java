@@ -1,10 +1,14 @@
 package com.example.uit_app;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +50,34 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AccountInfoActivity.class);
-                startActivity(intent);
+                intent.putExtra("userAcc", userAccount);
+                startActivityForResult(intent, 1);
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                userAccount = (UserAccount) data.getSerializableExtra("userNewAcc");
+                HomeScreenActivity.userAccount = userAccount;
+                name.setText(userAccount.getHoten());
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("name", userAccount.getHoten());
+                editor.putString("gender", userAccount.getGioitinh());
+                editor.putString("description", userAccount.getMota());
+                editor.putString("phone", userAccount.getSdt());
+                editor.putString("address", userAccount.getDiachia());
+
+                editor.apply();
+            }
+        }
     }
 }

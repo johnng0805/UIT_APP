@@ -18,13 +18,12 @@ import Model.UserAccount;
 public class HomeScreenActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     SharedPreferences sharedPreferences;
-    public UserAccount userAccount = new UserAccount();
-
+    public static UserAccount userAccount;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        userAccount = (UserAccount) getIntent().getSerializableExtra("userAcc");
         final FragmentManager fragmentManager = getSupportFragmentManager();
-        getPreferences();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
