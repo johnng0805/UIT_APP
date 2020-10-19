@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setEnabled(false);
 
         try {
+            alertDialog.show();
             iMyService.loginUser(email, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -99,12 +100,12 @@ public class LoginActivity extends AppCompatActivity {
                                                 jo.getString("phone"),
                                                 jo.getString("image"),
                                                 jo.getString("email"),
+                                                jo.getString("_id"),
                                                 stringResponse.headers().get("Auth-token"),
                                                 jo.getString("gender"),
                                                 jo.getString("description"),
                                                 jo.getString("address"),
-                                                password,
-                                                jo.getString("_id"));
+                                                password);
 
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
 

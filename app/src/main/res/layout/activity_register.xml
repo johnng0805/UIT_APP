@@ -8,7 +8,6 @@
     android:background="@drawable/login_screen"
     tools:context=".RegisterActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_logo"
         android:layout_width="252dp"
