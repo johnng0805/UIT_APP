@@ -43,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/aa_title"
             app:layout_constraintLeft_toLeftOf="@id/activity_account_ctn"
             app:layout_constraintRight_toRightOf="@id/activity_account_ctn"
-            app:layout_constraintBottom_toTopOf="@id/register_button"
+            app:layout_constraintBottom_toTopOf="@id/save_button"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:paddingHorizontal="10dp">
@@ -62,7 +62,7 @@
                     android:id="@+id/aa_name_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/edit_text_size"
+                    android:textSize="@dimen/heading_text"
                     android:textColor="@color/black"
                     android:drawableStart="@drawable/account_circle_24px"
                     android:drawablePadding="5dp" />
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/aa_gender_text"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_size"
+                    android:textSize="@dimen/heading_text"
                     android:drawableStart="@drawable/accessibility_24px_outlined"
                     android:drawablePadding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/aa_description_text"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_size"
+                    android:textSize="@dimen/heading_text"
                     android:drawableStart="@drawable/contact_mail_24px_outlined"
                     android:drawablePadding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +125,7 @@
                     android:drawableStart="@drawable/perm_phone_msg_24px_outlined"
                     android:drawablePadding="5dp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_size" />
+                    android:textSize="@dimen/heading_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

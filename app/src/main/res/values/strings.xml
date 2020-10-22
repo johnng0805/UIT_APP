@@ -31,6 +31,9 @@
     <!--Activity Account Info-->
     <string name="back">Back</string>
 
+    <!--Activity Avatar-->
+    <string name="avatar_title">Profile Picture</string>
+
     <!--Icon Title-->
     <string name="ic_feature_text">Features</string>
     <string name="ic_search_text">Search</string>
