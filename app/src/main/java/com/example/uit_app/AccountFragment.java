@@ -66,7 +66,6 @@ public class AccountFragment extends Fragment {
                 userAccount = (UserAccount) data.getSerializableExtra("userNewAcc");
                 HomeScreenActivity.userAccount = userAccount;
                 name.setText(userAccount.getHoten());
-
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
