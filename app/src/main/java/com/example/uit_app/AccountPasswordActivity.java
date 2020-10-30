@@ -59,6 +59,13 @@ public class AccountPasswordActivity extends AppCompatActivity {
                     ChangePassword();
             }
         });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setUIReference() {

@@ -32,7 +32,7 @@ import Retrofit.*;
 
 
 public class AccountFragment extends Fragment {
-    Button personalInfoBtn, securityBtn, logoutBtn;
+    Button personalInfoBtn, securityBtn, avatarBtn, logoutBtn;
     TextView name, email;
     Boolean flag = false;
 
@@ -57,6 +57,7 @@ public class AccountFragment extends Fragment {
         email = rootView.findViewById(R.id.account_email);
         personalInfoBtn = rootView.findViewById(R.id.person_information_btn);
         securityBtn = rootView.findViewById(R.id.security_btn);
+        avatarBtn = rootView.findViewById(R.id.profile_btn);
         logoutBtn = rootView.findViewById(R.id.logout_btn);
 
         name.setText(userAccount.getHoten());
@@ -68,6 +69,15 @@ public class AccountFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), AccountInfoActivity.class);
                 intent.putExtra("userAcc", userAccount);
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        avatarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AccountAvatarActivity.class);
+                intent.putExtra("userAcc", userAccount);
+                startActivityForResult(intent, 2);
             }
         });
 

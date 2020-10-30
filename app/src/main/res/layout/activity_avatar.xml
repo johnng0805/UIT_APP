@@ -117,7 +117,7 @@
 
 
         <Button
-            android:id="@+id/save_button"
+            android:id="@+id/avatar_save_button"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:background="@drawable/login_button"
@@ -132,7 +132,7 @@
             android:elevation="4dp" />
 
         <Button
-            android:id="@+id/back_button"
+            android:id="@+id/avatar_back_button"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:background="@drawable/ctn_white_background_2"
