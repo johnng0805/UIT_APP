@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActiveAccount"></activity>
+        <activity android:name=".ChangeAvatarActivity"></activity>
+        <activity android:name=".ChangePaswordActivity" />
+        <activity android:name=".ActiveAccountActivity" />
         <activity android:name=".AccountInfoActivity" />
         <activity android:name=".HomeScreenActivity" />
         <activity android:name=".RegisterActivity" />
