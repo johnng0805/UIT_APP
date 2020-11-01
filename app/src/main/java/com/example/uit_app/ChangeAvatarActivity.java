@@ -62,7 +62,7 @@ public class ChangeAvatarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_avatar);
+        setContentView(R.layout.activity_avatar);
 
         setUIReference();
 
@@ -320,10 +320,10 @@ public class ChangeAvatarActivity extends AppCompatActivity {
 //    }
 
     private void setUIReference() {
-        btnCamera = findViewById(R.id.btnCamera);
-        btnGallary = findViewById(R.id.btnGallary);
-        btnUpdateAvatar = findViewById(R.id.btnUpdateAvatar);
-        circle_avatar = findViewById(R.id.avatar);
+        btnCamera = findViewById(R.id.camera_btn);
+        btnGallary = findViewById(R.id.gallery_btn);
+        btnUpdateAvatar = findViewById(R.id.btnSavePassword);
+        circle_avatar = findViewById(R.id.imgview_avatar);
 //        UserToolbar = findViewById(R.id.UserToolbar);
     }
 }

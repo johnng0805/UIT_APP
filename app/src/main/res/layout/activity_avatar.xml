@@ -65,13 +65,13 @@
             app:layout_constraintRight_toRightOf="@id/activity_avatar_ctn"
             android:layout_marginTop="20dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgview_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="5dp"
-                android:src="@drawable/avatar"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar" />
 
         </androidx.cardview.widget.CardView>
 
@@ -117,7 +117,7 @@
 
 
         <Button
-            android:id="@+id/save_button"
+            android:id="@+id/btnSavePassword"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:background="@drawable/login_button"

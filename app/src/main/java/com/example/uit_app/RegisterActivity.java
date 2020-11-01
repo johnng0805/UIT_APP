@@ -230,7 +230,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setUIReference() {
-        txtHoTen = findViewById(R.id.HoTennText);
+        txtHoTen = findViewById(R.id.txtActToken);
         txtPhone = findViewById(R.id.PhoneText);
         txtDescription = findViewById(R.id.DescriptText);
         txtGender = findViewById(R.id.GenderText);
@@ -238,7 +238,7 @@ public class RegisterActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.EmailText);
         txtPassword = findViewById(R.id.PassText);
         txtPasswordconfirm = findViewById(R.id.CfpText);
-        bntRegister = findViewById(R.id.register_button);
+        bntRegister = findViewById(R.id.btnConfirm);
         tvLogin = findViewById(R.id.LoginBackText);
     }
 }

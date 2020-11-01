@@ -28,8 +28,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 public class ChangePaswordActivity extends AppCompatActivity {
 
-    EditText txtPassword, txtNewPassword, txtNewPasswordConfirm;
-    Button btnPasswordUpdate;
+    EditText edtPassword, edtNewPassword, edtNewPasswordConfirm;
+    Button btnSavePassword;
 
     String Password, newPassword, newPasswordConfirm;
 
@@ -43,7 +43,7 @@ public class ChangePaswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_pasword);
+        setContentView(R.layout.activity_password);
 
         setUIReference();
         Retrofit retrofitClient= RetrofitClient.getInstance();
@@ -52,9 +52,9 @@ public class ChangePaswordActivity extends AppCompatActivity {
         userAccount = (UserAccount) getIntent().getSerializableExtra("userAcc");
         alertDialog = new SpotsDialog.Builder().setContext(this).build();
 
-        txtPassword.setText(userAccount.getMatkhau());// lát code xong xoá
-        txtNewPassword.setText("Abcd1234");
-        txtNewPasswordConfirm.setText("Abcd1234");
+//        edtPassword.setText(userAccount.getMatkhau());// lát code xong xoá
+//        edtNewPassword.setText("Abcd1234");
+//        edtNewPasswordConfirm.setText("Abcd1234");
         ActionToolBar();
     }
 
@@ -69,7 +69,7 @@ public class ChangePaswordActivity extends AppCompatActivity {
                 finish();
             }
         });
-        btnPasswordUpdate.setOnClickListener(new View.OnClickListener() {
+        btnSavePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(checkValidInput())
@@ -79,8 +79,8 @@ public class ChangePaswordActivity extends AppCompatActivity {
     }
 
     private void changePass() {
-        btnPasswordUpdate.setClickable(false);
-        btnPasswordUpdate.setEnabled(false);
+        btnSavePassword.setClickable(false);
+        btnSavePassword.setEnabled(false);
 
         alertDialog.show();
         iMyService.changePass(Password,newPassword,userAccount.getToken())
@@ -159,8 +159,8 @@ public class ChangePaswordActivity extends AppCompatActivity {
                         }
                         else
                             Toast.makeText(ChangePaswordActivity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
-                        btnPasswordUpdate.setEnabled(true);
-                        btnPasswordUpdate.setClickable(true);
+                        btnSavePassword.setEnabled(true);
+                        btnSavePassword.setClickable(true);
 
                     }
                 });
@@ -168,9 +168,9 @@ public class ChangePaswordActivity extends AppCompatActivity {
 
     private boolean checkValidInput() {
         boolean valid=true;
-        Password = txtPassword.getText().toString();
-        newPassword = txtNewPassword.getText().toString();
-        newPasswordConfirm = txtNewPasswordConfirm.getText().toString();
+        Password = edtPassword.getText().toString();
+        newPassword = edtNewPassword.getText().toString();
+        newPasswordConfirm = edtNewPasswordConfirm.getText().toString();
         if(Password.isEmpty()||!Password.equals(userAccount.getMatkhau()))
         {
             valid=false;
@@ -206,9 +206,9 @@ public class ChangePaswordActivity extends AppCompatActivity {
 
     private void setUIReference() {
         userPassTB = findViewById(R.id.userPassTB);
-        txtPassword = findViewById(R.id.txtPassword);
-        txtNewPassword = findViewById(R.id.txtNewPassword);
-        txtNewPasswordConfirm = findViewById(R.id.txtNewPasswordConfirm);
-        btnPasswordUpdate = findViewById(R.id.btnPasswordUpdate);
+        edtPassword = findViewById(R.id.txtPassword);
+        edtNewPassword = findViewById(R.id.txtNewPassword);
+        edtNewPasswordConfirm = findViewById(R.id.txtNewPasswordConfirm);
+        btnSavePassword = findViewById(R.id.btnSavePassword);
     }
 }
