@@ -4,6 +4,7 @@ import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -39,4 +40,14 @@ public interface IMyService {
                                                @Field("description") String description,
                                                @Field("gender") String gender,
                                                @Header("auth-token") String authToken);
+
+    @PUT("change-password")
+    @FormUrlEncoded
+    Observable<Response<String>> changePassword(@Field("oldpassword") String oldPass,
+                                                @Field("newpassword") String newPass,
+                                                @Header("auth-token") String authToken);
+
+    //Account Fragment
+    @GET("logout")
+    Observable<String>  userLogout(@Header("auth-token") String authToken);
 }

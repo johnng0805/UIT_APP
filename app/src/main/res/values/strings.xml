@@ -32,7 +32,16 @@
     <string name="back">Back</string>
 
     <!--Activity Avatar-->
-    <string name="avatar_title">Profile Picture</string>
+    <string name="avatar">Profile Picture</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
+    <!--Activity Password-->
+    <string name="passtitle">Security</string>
+    <string name="pass">Enter new password</string>
+    <string name="confirmpass">Re-enter new password</string>
+    <string name="oldpass">Enter old password</string>
+
 
     <!--Icon Title-->
     <string name="ic_feature_text">Features</string>
