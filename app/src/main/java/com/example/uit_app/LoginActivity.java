@@ -57,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         iMyService = retrofitClient.create(IMyService.class);
         alertDialog = new SpotsDialog.Builder().setContext(this).build();
 
+        emailEditText.setText("luongkhoadang13012000@gmail.com");
+        passwordEditText.setText("Abcd1234");
+
         registerTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

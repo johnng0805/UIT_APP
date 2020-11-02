@@ -58,7 +58,7 @@
                 app:layout_constraintRight_toRightOf="@id/edit_ctn">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/aa_name_text"
+                    android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/edit_text_size"
@@ -80,7 +80,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/aa_gender_text"
+                    android:id="@+id/edtNewPassword"
                     android:textColor="@color/black"
                     android:textSize="@dimen/edit_text_size"
                     android:drawableStart="@drawable/accessibility_24px_outlined"
@@ -100,7 +100,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/aa_description_text"
+                    android:id="@+id/edtNewPasswordConfirm"
                     android:textColor="@color/black"
                     android:textSize="@dimen/edit_text_size"
                     android:drawableStart="@drawable/contact_mail_24px_outlined"
@@ -149,7 +149,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/save_button"
+            android:id="@+id/btnSavePassword"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:background="@drawable/login_button"
