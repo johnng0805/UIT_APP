@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:id="@+id/login_background"
+    android:background="@drawable/login_screen"
+    tools:context=".AccountAvatarActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_avatar_ctn"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@drawable/ctn_white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingVertical="15dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/ava_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/avatar"
+            android:textAllCaps="false"
+            android:textSize="25sp"
+            android:textColor="@color/colorButton"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/cardview_cover"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:layout_constraintLeft_toLeftOf="@id/activity_avatar_ctn"
+            app:layout_constraintTop_toBottomOf="@id/ava_title">
+
+            <ImageView
+                android:id="@+id/imgview_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="cover image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_cover" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/cardview_avatar"
+            app:cardCornerRadius="60dp"
+            app:layout_constraintTop_toBottomOf="@id/cardview_cover"
+            app:layout_constraintLeft_toLeftOf="@id/activity_avatar_ctn"
+            app:layout_constraintRight_toRightOf="@id/activity_avatar_ctn"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/imgview_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:src="@drawable/avatar"
+                android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/camera_btn"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ctn_white_background_2"
+            android:elevation="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:drawableStart="@drawable/linked_camera_24px_outlined"
+            android:drawablePadding="10dp"
+            android:text="@string/camera"
+            android:textColor="@color/colorButton"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            app:layout_constraintTop_toBottomOf="@id/cardview_avatar"
+            app:layout_constraintLeft_toLeftOf="@id/activity_avatar_ctn"/>
+
+        <Button
+            android:id="@+id/gallery_btn"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ctn_white_background_2"
+            android:elevation="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:drawableStart="@drawable/add_photo_alternate_24px_outlined"
+            android:drawablePadding="10dp"
+            android:text="@string/gallery"
+            android:textColor="@color/colorButton"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            app:layout_constraintTop_toBottomOf="@id/cardview_avatar"
+            app:layout_constraintRight_toRightOf="@id/activity_avatar_ctn"/>
+
+
+        <Button
+            android:id="@+id/avatar_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@drawable/login_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/save_text"
+            android:textColor="@color/colorBtnText"
+            app:layout_constraintBottom_toBottomOf="@id/activity_avatar_ctn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="3dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/avatar_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:background="@drawable/ctn_white_background_2"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:gravity="center"
+            android:text="@string/back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     boolean flag = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

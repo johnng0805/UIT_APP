@@ -3,6 +3,7 @@ package Retrofit;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -12,6 +13,8 @@ public class RetrofitClient {
 
     public static Retrofit getInstance() {
         if (instance == null) {
+            HttpLoggingInterceptor logging =  new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(300, TimeUnit.SECONDS)
                     .writeTimeout(300, TimeUnit.SECONDS)

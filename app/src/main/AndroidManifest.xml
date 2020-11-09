@@ -13,10 +13,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true">
         <activity android:name=".AccountInfoActivity"/>
         <activity android:name=".HomeScreenActivity"/>
         <activity android:name=".RegisterActivity"/>
+        <activity android:name=".AccountPasswordActivity"/>
+        <activity android:name=".AccountAvatarActivity"/>
         <activity
             android:name=".LoginActivity"
             android:label="UIT APP">

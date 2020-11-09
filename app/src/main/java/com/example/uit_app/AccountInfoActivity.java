@@ -9,11 +9,9 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +19,6 @@ import org.json.JSONObject;
 import Model.UserAccount;
 import dmax.dialog.SpotsDialog;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -78,13 +75,13 @@ public class AccountInfoActivity extends AppCompatActivity {
     }
 
     private void setUIReferences() {
-        nameET = findViewById(R.id.aa_name_text);
-        genderET = findViewById(R.id.aa_gender_text);
-        descriptionET = findViewById(R.id.aa_description_text);
+        nameET = findViewById(R.id.edtPassword);
+        genderET = findViewById(R.id.edtNewPassword);
+        descriptionET = findViewById(R.id.edtNewPasswordConfirm);
         phoneET = findViewById(R.id.aa_phone_text);
         addressET = findViewById(R.id.aa_address_text);
 
-        saveBtn = findViewById(R.id.save_button);
+        saveBtn = findViewById(R.id.btnSavePassword);
         backBtn = findViewById(R.id.back_button);
     }
 
