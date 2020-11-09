@@ -67,7 +67,7 @@ public class AccountFragment extends Fragment {
         avatar = rootView.findViewById(R.id.imgview_avatar);
         personalInfoBtn = rootView.findViewById(R.id.person_information_btn);
         securityBtn = rootView.findViewById(R.id.security_btn);
-        avatarBtn = rootView.findViewById(R.id.profile_btn);
+        avatarBtn = rootView.findViewById(R.id.btnProfilePicture);
         logoutBtn = rootView.findViewById(R.id.logout_btn);
 
         Picasso.get().load(url+userAccount.getAva()).placeholder(R.drawable.avatar)

@@ -99,7 +99,7 @@ public class AccountAvatarActivity extends AppCompatActivity {
                     String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                     requestPermissions(permissions, 1000);
                 } else {
-                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(galleryIntent, 1001);
                 }
             }
@@ -129,7 +129,7 @@ public class AccountAvatarActivity extends AppCompatActivity {
             }
             case 1000: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(galleryIntent, 1001);
                 } else {
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
@@ -194,6 +194,15 @@ public class AccountAvatarActivity extends AppCompatActivity {
         }
     }
 
+    private static String between(String start, String end, String input) {
+        int startIndex = input.indexOf(start);
+        int endIndex = input.indexOf(end);
+        if (startIndex == -1 || endIndex == -1)
+            return input;
+        else
+            return input.substring(startIndex + start.length(), endIndex + end.length());
+    }
+
     private void changeAvatar() {
         saveBtn.setClickable(false);
         saveBtn.setFocusable(false);
@@ -215,7 +224,16 @@ public class AccountAvatarActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull Response<String> stringResponse) {
                         if (stringResponse.isSuccessful()) {
-                            flag = stringResponse.message().equals("OK");
+                            if (stringResponse.message().equals("OK")) {
+                                String response = stringResponse.body().toString();
+                                String start = "\"image\"";
+                                String end = "\"gender\"";
+                                String avaName = between(start, end, response);
+                                String[] arg = avaName.split("\"");
+                                userAccount.setAva(arg[1]);
+                                flag = true;
+                            }
+
                         } else {
                             flag = false;
                         }

@@ -76,6 +76,7 @@ public class AccountPasswordActivity extends AppCompatActivity {
         newPass = findViewById(R.id.security_new_text);
         newPassConfirm = findViewById(R.id.security_confirm_text);
         saveBtn = findViewById(R.id.security_save_button);
+        backBtn = findViewById(R.id.security_back_button);
     }
 
     private boolean checkValidInput() {
