@@ -58,4 +58,14 @@ public interface IMyService {
     //Account Fragment
     @GET("logout")
     Observable<String>  userLogout(@Header("auth-token") String authToken);
+
+    //FeatureFragment - Week 3
+    @GET("category/get-all-category")
+    Observable<String>  getAllCategory();
+    @GET("course/get-all")
+    Observable<String>  getAllCourse();
+    @GET("course/get-free")
+    Observable<String>  getFreeCourse();
+    @GET("course/get-top")
+    Observable<String>  getTopCourse();
 }

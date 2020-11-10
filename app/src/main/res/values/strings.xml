@@ -58,4 +58,15 @@
     -->
     <string name="hello_world">Hello Square World!</string>
 
+    <!--Feature Fragment-->
+    <string name="categories">Categories</string>
+    <string name="latest">Latest</string>
+    <string name="free">Free</string>
+    <string name="best">Best</string>
+
+    <!--Course Item-->
+    <string name="course_description">Course Image</string>
+    <string name="course_name">Course Name</string>
+    <string name="course_price">Course Price</string>
+
 </resources>
