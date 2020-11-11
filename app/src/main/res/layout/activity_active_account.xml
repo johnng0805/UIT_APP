@@ -68,7 +68,7 @@
             app:layout_constraintRight_toRightOf="@id/register_ctn">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/HoTennText"
+                android:id="@+id/txtActToken"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,19 +88,7 @@
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/htLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/PhoneText"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:drawableEnd="@drawable/perm_phone_msg_24px_outlined"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="@+id/phoneLayout" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintRight_toRightOf="@id/register_ctn"/>
 
         <TextView
             android:id="@+id/forgot_password_Text"
@@ -112,14 +100,14 @@
             android:text="@string/forgot_password_text"
             android:textColor="@color/gray"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/register_button"
+            app:layout_constraintBottom_toTopOf="@+id/btnConfirm"
             app:layout_constraintTop_toBottomOf="@+id/LoginBackText"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
             app:layout_constraintRight_toRightOf="@id/register_ctn"
             tools:layout_editor_absoluteY="501dp" />
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/register_button"

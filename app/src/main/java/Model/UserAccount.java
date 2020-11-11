@@ -103,6 +103,10 @@ public class UserAccount implements Serializable {
         this.matkhau = matkhau;
     }
 
+    public UserAccount() {
+
+    }
+
     public UserAccount(String hoten, String ngaysinh, String sdt, String ava, String mail, String ID, String token, String gioitinh, String mota, String diachia, String matkhau) {
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;

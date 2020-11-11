@@ -18,6 +18,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+
 import Model.UserAccount;
 import Retrofit.IMyService;
 import Retrofit.*;
@@ -35,6 +37,7 @@ public class AccountPasswordActivity extends AppCompatActivity {
     EditText oldPass, newPass, newPassConfirm;
     String oldPassString, newPassString;
     Button backBtn, saveBtn;
+    File file;
     boolean flag = false;
 
     IMyService iMyService;
@@ -73,6 +76,7 @@ public class AccountPasswordActivity extends AppCompatActivity {
         newPass = findViewById(R.id.security_new_text);
         newPassConfirm = findViewById(R.id.security_confirm_text);
         saveBtn = findViewById(R.id.security_save_button);
+        backBtn = findViewById(R.id.security_back_button);
     }
 
     private boolean checkValidInput() {

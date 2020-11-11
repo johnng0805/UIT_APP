@@ -39,6 +39,10 @@ public class HomeScreenActivity extends AppCompatActivity {
                     case R.id.account_icon:
                         fragment = new AccountFragment(userAccount);
                         break;
+                    //TODO Feature, Search. Cart Fragments
+                    case R.id.feature_icon:
+                        fragment = new FeatureFragment();
+                        break;
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment).commit();

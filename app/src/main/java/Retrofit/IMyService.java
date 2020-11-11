@@ -1,13 +1,16 @@
 package Retrofit;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public interface IMyService {
     @POST("login")
@@ -47,7 +50,22 @@ public interface IMyService {
                                                 @Field("newpassword") String newPass,
                                                 @Header("auth-token") String authToken);
 
+    @Multipart
+    @PUT("change-avatar")
+    Observable<Response<String>>  changeAva(@Part MultipartBody.Part file,
+                                            @Header("auth-token") String authToken);
+
     //Account Fragment
     @GET("logout")
     Observable<String>  userLogout(@Header("auth-token") String authToken);
+
+    //FeatureFragment - Week 3
+    @GET("category/get-all-category")
+    Observable<String>  getAllCategory();
+    @GET("course/get-all")
+    Observable<String>  getAllCourse();
+    @GET("course/get-free")
+    Observable<String>  getFreeCourse();
+    @GET("course/get-top")
+    Observable<String>  getTopCourse();
 }

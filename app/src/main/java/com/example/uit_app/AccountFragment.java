@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -16,8 +17,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import Model.UserAccount;
 import Retrofit.IMyService;
@@ -35,6 +41,9 @@ public class AccountFragment extends Fragment {
     Button personalInfoBtn, securityBtn, avatarBtn, logoutBtn;
     TextView name, email;
     Boolean flag = false;
+    ImageView avatar;
+
+    String url = "http://149.28.24.98:9000/upload/user_image/";
 
     UserAccount userAccount;
 
@@ -55,10 +64,18 @@ public class AccountFragment extends Fragment {
 
         name = rootView.findViewById(R.id.account_name);
         email = rootView.findViewById(R.id.account_email);
+        avatar = rootView.findViewById(R.id.imgview_avatar);
         personalInfoBtn = rootView.findViewById(R.id.person_information_btn);
         securityBtn = rootView.findViewById(R.id.security_btn);
-        avatarBtn = rootView.findViewById(R.id.profile_btn);
+        avatarBtn = rootView.findViewById(R.id.btnProfilePicture);
         logoutBtn = rootView.findViewById(R.id.logout_btn);
+
+        Picasso.get().load(url+userAccount.getAva()).placeholder(R.drawable.avatar)
+                .error(R.drawable.avatar)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .into(avatar);
+
 
         name.setText(userAccount.getHoten());
         email.setText(userAccount.getMail());
@@ -175,28 +192,47 @@ public class AccountFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                userAccount = (UserAccount) data.getSerializableExtra("userNewAcc");
-                HomeScreenActivity.userAccount = userAccount;
-                name.setText(userAccount.getHoten());
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+        switch (requestCode) {
+            case 1: {
+                if (resultCode == Activity.RESULT_OK) {
+                    userAccount = (UserAccount) data.getSerializableExtra("userNewAcc");
+                    HomeScreenActivity.userAccount = userAccount;
+                    name.setText(userAccount.getHoten());
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                editor.putString("name", userAccount.getHoten());
-                editor.putString("gender", userAccount.getGioitinh());
-                editor.putString("description", userAccount.getMota());
-                editor.putString("phone", userAccount.getSdt());
-                editor.putString("address", userAccount.getDiachia());
+                    editor.putString("name", userAccount.getHoten());
+                    editor.putString("gender", userAccount.getGioitinh());
+                    editor.putString("description", userAccount.getMota());
+                    editor.putString("phone", userAccount.getSdt());
+                    editor.putString("address", userAccount.getDiachia());
 
-                editor.apply();
+                    editor.apply();
+                    break;
+                }
             }
-        }
+            case 2: {
+                if (resultCode == Activity.RESULT_OK) {
+                    assert data != null;
+                    userAccount = (UserAccount) data.getSerializableExtra("userAcc");
+                    HomeScreenActivity.userAccount = userAccount;
 
-        if (requestCode == 3) {
-            if (resultCode == Activity.RESULT_OK) {
-                userAccount = (UserAccount) data.getSerializableExtra("userAcc");
-                HomeScreenActivity.userAccount = userAccount;
+                    Picasso.get().load(url+userAccount.getAva())
+                            .placeholder(R.drawable.avatar)
+                            .error(R.drawable.avatar)
+                            .networkPolicy(NetworkPolicy.NO_CACHE)
+                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                            .into(avatar);
+                    break;
+                }
+            }
+            case 3: {
+                if (resultCode == Activity.RESULT_OK) {
+                    assert data != null;
+                    userAccount = (UserAccount) data.getSerializableExtra("userAcc");
+                    HomeScreenActivity.userAccount = userAccount;
+                    break;
+                }
             }
         }
     }
