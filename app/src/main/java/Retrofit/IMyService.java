@@ -73,4 +73,8 @@ public interface IMyService {
     //Joined Course
     @GET
     Observable<String> getJoinedCourse(@Url String urlGet);
+
+    //Course Detail
+    @GET
+    Observable<String> getListComment(@Url String urlGet);
 }

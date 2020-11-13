@@ -1,11 +1,13 @@
 package com.example.uit_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,20 +20,33 @@ import java.util.List;
 
 import Model.CourseItem;
 
-public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.MyViewHolder> {
+public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.MyViewHolder>  {
 
     private List<CourseItem> courseItems;
     private Context context;
     private static String url = "http://149.28.24.98:9000/upload/course_image/";
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView courseImg;
         public TextView courseName, coursePrice;
+        private CourseClickListener clickListener;
+
         public MyViewHolder(View view) {
             super(view);
             courseImg = (ImageView) view.findViewById(R.id.item_course_img);
             courseName = (TextView) view.findViewById(R.id.item_course_label);
             coursePrice = (TextView) view.findViewById(R.id.item_course_price);
+
+            view.setOnClickListener(this);
+        }
+
+        public void setItemClickListener(CourseClickListener clickListener) {
+            this.clickListener = clickListener;
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onClick(v, getAdapterPosition(), false);
         }
     }
 
@@ -57,7 +72,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.My
         TextView coursePrice = holder.coursePrice;
         ImageView courseImg = holder.courseImg;
 
-        courseName.setText(courseItem.getCategoryName());
+        courseName.setText(courseItem.getTitle());
 
         if (courseItem.getPrice() == 0) {
             coursePrice.setText(R.string.free);
@@ -71,6 +86,18 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.My
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .into(courseImg);
+
+        holder.setItemClickListener(new CourseClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+                CourseItem courseItemClick = courseItems.get(position);
+
+                Intent intent = new Intent(context, CourseDetailsActivity.class);
+                intent.putExtra("courseItem", courseItemClick);
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

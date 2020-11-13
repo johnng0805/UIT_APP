@@ -73,4 +73,20 @@
     <string name="course_fragment_title">Your Created Courses</string>
     <string name="course_fragment_button">Create New Course</string>
 
+    <!--Course Detail-->
+    <string name="join_btn">Join</string>
+    <string name="rate_btn">Rate</string>
+    <string name="overview_text">Overview Placeholder</string>
+    <string name="course_overview">Course Overview</string>
+    <string name="objective_text">Objective Placeholder</string>
+    <string name="course_object">Course Objectives</string>
+    <string name="course_details_title">Course Title</string>
+    <string name="related_course">Related Course</string>
+    <string name="user_rating">User Rating</string>
+    <string name="by">By:</string>
+    <string name="from">From:</string>
+    <string name="author_name">Author Name</string>
+    <string name="time_created">YYYY-MM-DD</string>
+    <string name="price">Price:</string>
+
 </resources>
