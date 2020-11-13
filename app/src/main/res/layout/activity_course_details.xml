@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:id="@+id/login_background"
+    android:background="@drawable/login_screen"
+    tools:context=".CourseDetailsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_course_detail_ctn"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:background="@drawable/ctn_white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/cardview_cover"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/activity_course_detail_ctn">
+
+            <ImageView
+                android:id="@+id/imgview_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="cover image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cprogrampic" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/cd_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/course_details_title"
+            android:textAllCaps="false"
+            android:textSize="25sp"
+            android:textColor="@color/colorButton"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardview_cover" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            app:layout_constraintTop_toBottomOf="@id/cd_title"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                app:layout_constraintLeft_toLeftOf="@id/scrollview"
+                app:layout_constraintRight_toRightOf="@id/scrollview"
+                app:layout_constraintTop_toTopOf="@id/scrollview"
+                app:layout_constraintBottom_toBottomOf="@id/scrollview">
+
+                <TextView
+                    android:id="@+id/courseobj"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/course_object"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorButton"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/objtext"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/objtxt"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorButton"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/courseobj"/>
+
+                <TextView
+                    android:id="@+id/courseov"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/course_overview"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorButton"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/objtext"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:id="@+id/ovtext"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ovtxt"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorButton"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/courseov"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/btnrate"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@drawable/login_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/rate_btn"
+            android:textColor="@color/colorBtnText"
+            app:layout_constraintTop_toBottomOf="@id/scrollview"
+            app:layout_constraintLeft_toRightOf="@id/btnjoin"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="80dp"
+            android:elevation="4dp" />
+        <Button
+            android:id="@+id/btnjoin"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@drawable/login_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/join_btn"
+            android:textColor="@color/colorBtnText"
+            app:layout_constraintTop_toBottomOf="@id/scrollview"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btnrate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="80dp"
+            android:elevation="4dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
