@@ -51,7 +51,9 @@
             android:layout_marginTop="@dimen/margin_base_x2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardview_cover"/>
+            app:layout_constraintTop_toBottomOf="@id/cardview_cover"
+            android:layout_marginHorizontal="@dimen/margin_base_x4"
+            android:gravity="center"/>
 
         <ScrollView
             android:id="@+id/scrollview"
@@ -162,7 +164,8 @@
                     android:textColor="@color/colorButton"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/courseobj"/>
+                    app:layout_constraintTop_toBottomOf="@id/courseobj"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:id="@+id/courseov"
@@ -186,7 +189,8 @@
                     android:textColor="@color/colorButton"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/courseov"/>
+                    app:layout_constraintTop_toBottomOf="@id/courseov"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="match_parent"
