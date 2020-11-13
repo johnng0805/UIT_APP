@@ -69,4 +69,12 @@
     <string name="course_name">Course Name</string>
     <string name="course_price">Course Price</string>
 
+    <!--Activity Course Details-->
+    <string name="course_details_title">C++ Programming</string>
+    <string name="course_object">Course Objective</string>
+    <string name="course_overview">Course Overview</string>
+    <string name="join_btn">Join</string>
+    <string name="rate_btn">Rate</string>
+    <string name="objtxt">Text me :D</string>
+    <string name="ovtxt">Text me :D</string>
 </resources>
