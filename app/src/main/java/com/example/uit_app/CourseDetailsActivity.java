@@ -93,9 +93,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
                                         JSONObject jo = ja.getJSONObject(i);
                                         JSONObject joSub = jo.getJSONObject("vote");
                                         JSONObject joCat = jo.getJSONObject("category");
+                                        JSONObject joAuthor = jo.getJSONObject("idUser");
 
                                         CourseItem item = new CourseItem();
                                         item.setTitle(jo.getString("name"));
+                                        item.setAuthor(joAuthor.getString("name"));
+                                        item.setAuthorID(joAuthor.getString("_id"));
                                         item.setTotalVote(joSub.getInt("totalVote"));
                                         item.setDiscount(jo.getInt("discount"));
                                         item.setRanking(jo.getString("ranking"));
