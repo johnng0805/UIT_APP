@@ -13,4 +13,9 @@
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_large">20sp</dimen>
     <dimen name="corner_radius">10dp</dimen>
+
+    <!-- For Fragments -->
+    <dimen name="margin_fragment">30dp</dimen>
+    <dimen name="elevation_fragment">5dp</dimen>
+
 </resources>

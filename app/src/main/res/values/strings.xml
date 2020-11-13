@@ -69,4 +69,8 @@
     <string name="course_name">Course Name</string>
     <string name="course_price">Course Price</string>
 
+    <!--Course Fragment-->
+    <string name="course_fragment_title">Your Created Courses</string>
+    <string name="course_fragment_button">Create New Course</string>
+
 </resources>

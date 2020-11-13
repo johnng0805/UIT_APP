@@ -43,6 +43,9 @@ public class HomeScreenActivity extends AppCompatActivity {
                     case R.id.feature_icon:
                         fragment = new FeatureFragment();
                         break;
+                    case R.id.course_icon:
+                        fragment = new CourseFragment(userAccount);
+                        break;
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment).commit();
