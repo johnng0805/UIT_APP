@@ -1,8 +1,12 @@
 package com.example.uit_app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,11 +30,13 @@ import java.util.ArrayList;
 import Model.CourseItem;
 import Model.UserAccount;
 import Retrofit.IMyService;
+import dmax.dialog.SpotsDialog;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import Retrofit.*;
 
@@ -45,11 +51,14 @@ public class CourseDetailsActivity extends AppCompatActivity {
     RecyclerView courseRelated, courseRating;
     Button joinBtn, rateBtn;
 
+    Boolean joined = false;
+
     ArrayList<CourseItem> courseRelatedItem;
     CourseItemAdapter courseItemAdapter;
 
     IMyService iMyService;
     Retrofit retrofit;
+    AlertDialog alertDialog;
 
     private static String urlImg = "http://149.28.24.98:9000/upload/course_image/";
     private static String urlComment = "http://149.28.24.98:9000/comment/get-parent-comment-by-lesson/";
@@ -59,6 +68,8 @@ public class CourseDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
 
+        alertDialog = new SpotsDialog.Builder().setContext(this).build();
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         courseItem = (CourseItem) getIntent().getSerializableExtra("courseItem");
 
@@ -66,6 +77,13 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         courseRelatedItem = new ArrayList<CourseItem>();
         loadRelatedCourse();
+
+        joinBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                joinCourse();
+            }
+        });
     }
 
     private void loadRelatedCourse() {
@@ -134,6 +152,69 @@ public class CourseDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete() {
 
+                    }
+                });
+    }
+
+    private void debugFun(String response) {
+        String temp = response;
+        String userID = sharedPreferences.getString("id", "");
+    }
+
+    private void joinCourse() {
+
+        joinBtn.setClickable(false);
+        joinBtn.setFocusable(false);
+
+        retrofit = RetrofitClient.getInstance();
+        iMyService = retrofit.create(IMyService.class);
+
+        alertDialog.show();
+        iMyService.joinCourse(sharedPreferences.getString("id", ""), courseItem.getID())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<String>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Response<String> stringResponse) {
+                        if (stringResponse.isSuccessful()) {
+                            joined = true;
+                        }
+                        debugFun(stringResponse.toString());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+                        Toast.makeText(CourseDetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+
+                        if (!joined) {
+                            Toast.makeText(CourseDetailsActivity.this, "Cannot join course.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(CourseDetailsActivity.this, "Joined Successfully", Toast.LENGTH_SHORT).show();
+                        }
+
+                        joinBtn.setClickable(true);
+                        joinBtn.setFocusable(true);
                     }
                 });
     }

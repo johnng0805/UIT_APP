@@ -74,6 +74,11 @@ public interface IMyService {
     @GET
     Observable<String> getJoinedCourse(@Url String urlGet);
 
+    @POST("join/create-join")
+    @FormUrlEncoded
+    Observable<Response<String>> joinCourse(@Field("idUser") String name,
+                                            @Field("idCourse") String course);
+
     //Course Detail
     @GET
     Observable<String> getListComment(@Url String urlGet);

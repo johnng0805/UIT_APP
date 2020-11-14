@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/course_description"
                 android:scaleType="centerCrop"
-                android:src="@drawable/cprogrampic" />
+                android:src="@drawable/cprogrampic"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -243,7 +243,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginVertical="@dimen/margin_base_x2"
+            android:layout_marginVertical="@dimen/margin_base_x3"
             android:clipToPadding="false"
             android:id="@+id/btn_ctn">
 
@@ -260,7 +260,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/btnjoin"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:elevation="4dp"
+                android:elevation="@dimen/elevation_fragment"
                 android:layout_marginHorizontal="@dimen/margin_base"/>
 
             <Button
@@ -276,7 +276,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/btnrate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:elevation="4dp"
+                android:elevation="@dimen/elevation_fragment"
                 android:layout_marginHorizontal="@dimen/margin_base"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
