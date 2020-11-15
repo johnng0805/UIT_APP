@@ -14,12 +14,8 @@
     <dimen name="text_large">20sp</dimen>
     <dimen name="corner_radius">10dp</dimen>
 
-    <!--Font Sizes-->
-    <dimen name="heading_text">20sp</dimen>
-    <dimen name="normal_text">14sp</dimen>
-    <dimen name="activity_title">25sp</dimen>
-
-    <!--Padding-->
-    <dimen name="top_padding_title">30dp</dimen>
+    <!-- For Fragments -->
+    <dimen name="margin_fragment">30dp</dimen>
+    <dimen name="elevation_fragment">5dp</dimen>
 
 </resources>

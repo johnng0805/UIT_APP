@@ -11,6 +11,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Url;
 
 public interface IMyService {
     @POST("login")
@@ -68,4 +69,17 @@ public interface IMyService {
     Observable<String>  getFreeCourse();
     @GET("course/get-top")
     Observable<String>  getTopCourse();
+
+    //Joined Course
+    @GET
+    Observable<String> getJoinedCourse(@Url String urlGet);
+
+    @POST("join/create-join")
+    @FormUrlEncoded
+    Observable<Response<String>> joinCourse(@Field("idUser") String name,
+                                            @Field("idCourse") String course);
+
+    //Course Detail
+    @GET
+    Observable<String> getListComment(@Url String urlGet);
 }
