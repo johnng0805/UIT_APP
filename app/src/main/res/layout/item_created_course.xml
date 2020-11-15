@@ -4,8 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    android:background="@drawable/ctn_white_background_2"
     app:cardCornerRadius="@dimen/corner_radius"
-    android:elevation="@dimen/elevation_fragment">
+    android:elevation="@dimen/elevation_fragment"
+    android:layout_marginBottom="@dimen/margin_base_x2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,18 +16,18 @@
         android:id="@+id/ll_item_created_course">
 
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:id="@+id/item_created_course_img"
             android:src="@drawable/devices"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/course_description"/>
 
         <LinearLayout
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/margin_base_x2">
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,7 +39,6 @@
                 android:textColor="@color/colorButton"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_small"
-                android:paddingHorizontal="@dimen/margin_base"
                 android:gravity="bottom"/>
 
             <TextView
@@ -48,8 +49,7 @@
                 android:text="@string/course_price"
                 android:textSize="@dimen/text_14"
                 android:textStyle="italic"
-                android:textColor="@color/colorAccent"
-                android:paddingHorizontal="@dimen/margin_base"/>
+                android:textColor="@color/colorAccent"/>
         </LinearLayout>
 
     </LinearLayout>

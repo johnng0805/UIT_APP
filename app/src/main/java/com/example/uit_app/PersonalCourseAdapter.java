@@ -36,8 +36,7 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
         }
     }
 
-    public PersonalCourseAdapter(Context context, List<CourseItem> courseItems) {
-        this.context = context;
+    public PersonalCourseAdapter(List<CourseItem> courseItems) {
         this.courseItems = courseItems;
     }
 

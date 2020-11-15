@@ -89,4 +89,9 @@
     <string name="time_created">YYYY-MM-DD</string>
     <string name="price">Price:</string>
 
+    <!--Search Fragment-->
+    <string name="search_hint">Search here</string>
+    <string name="result">Result</string>
+    <string name="search">Search</string>
+
 </resources>
