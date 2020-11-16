@@ -49,7 +49,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
     TextView courseTitle, courseAuthor, courseDate, coursePrice, courseObjective, courseOverview;
     ImageView courseImg;
     RecyclerView courseRelated, courseRating;
-    Button joinBtn, rateBtn;
+    Button addBtn, rateBtn;
 
     Boolean joined = false;
 
@@ -78,7 +78,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         courseRelatedItem = new ArrayList<CourseItem>();
         loadRelatedCourse();
 
-        joinBtn.setOnClickListener(new View.OnClickListener() {
+        addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 joinCourse();
@@ -161,10 +161,14 @@ public class CourseDetailsActivity extends AppCompatActivity {
         String userID = sharedPreferences.getString("id", "");
     }
 
+    private void addToCart() {
+
+    }
+
     private void joinCourse() {
 
-        joinBtn.setClickable(false);
-        joinBtn.setFocusable(false);
+        addBtn.setClickable(false);
+        addBtn.setFocusable(false);
 
         retrofit = RetrofitClient.getInstance();
         iMyService = retrofit.create(IMyService.class);
@@ -213,8 +217,8 @@ public class CourseDetailsActivity extends AppCompatActivity {
                             Toast.makeText(CourseDetailsActivity.this, "Joined Successfully", Toast.LENGTH_SHORT).show();
                         }
 
-                        joinBtn.setClickable(true);
-                        joinBtn.setFocusable(true);
+                        addBtn.setClickable(true);
+                        addBtn.setFocusable(true);
                     }
                 });
     }
@@ -227,7 +231,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         courseObjective = findViewById(R.id.objtext);
         courseOverview = findViewById(R.id.ovtext);
         courseImg = findViewById(R.id.imgview_cover);
-        joinBtn = findViewById(R.id.btnjoin);
+        addBtn = findViewById(R.id.btnjoin);
         rateBtn = findViewById(R.id.btnrate);
         courseRelated = findViewById(R.id.related_course_view);
         courseRating = findViewById(R.id.user_rating_view);

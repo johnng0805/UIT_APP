@@ -94,4 +94,11 @@
     <string name="result">Result</string>
     <string name="search">Search</string>
 
+    <!--Cart Fragment-->
+    <string name="title">Your Cart</string>
+    <string name="pay">Pay</string>
+    <string name="total">Total:</string>
+    <string name="cart_price">0.000.000</string>
+    <string name="x">x</string>
+
 </resources>
