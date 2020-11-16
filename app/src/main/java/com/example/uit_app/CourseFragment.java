@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,9 @@ import Retrofit.*;
 public class CourseFragment extends Fragment {
 
     TextView title;
+    Spinner spinner;
+    ArrayList<String> titlestr;
+    ArrayAdapter<String> adapter;
 
     RecyclerView courseView;
     ArrayList<CourseItem> courseCreated;
@@ -61,11 +66,15 @@ public class CourseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_course, container, false);
 
+        spinner = rootView.findViewById(R.id.spinner);
         title = rootView.findViewById(R.id.course_fragment_title);
         courseView = rootView.findViewById(R.id.course_fragment_view);
         createButton = rootView.findViewById(R.id.create_course_btn);
 
         loadJoinedCourse();
+        titlestr = new ArrayList<>();
+        titlestr.add("Your Created Courses");
+        titlestr.add("Your Joined Courses");
 
         return rootView;
     }

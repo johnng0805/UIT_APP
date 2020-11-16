@@ -94,7 +94,6 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.My
 
                 Intent intent = new Intent(context, CourseDetailsActivity.class);
                 intent.putExtra("courseItem", courseItemClick);
-                
 
                 context.startActivity(intent);
             }
