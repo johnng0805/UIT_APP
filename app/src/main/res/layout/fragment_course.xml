@@ -57,7 +57,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@id/create_course_btn"
             app:layout_constrainedHeight="true"
-            android:layout_marginVertical="@dimen/margin_base_x4"/>
+            android:layout_marginVertical="@dimen/margin_base_x4"
+            android:paddingHorizontal="@dimen/margin_base"
+            android:clipToPadding="false"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
