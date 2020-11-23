@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="85dp"
     android:background="@drawable/ctn_white_background_2"
-    app:cardCornerRadius="@dimen/corner_radius"
+    app:cardCornerRadius="@dimen/margin_base"
     android:elevation="@dimen/elevation_fragment"
-    android:layout_marginBottom="@dimen/margin_base_x2">
+    android:layout_marginVertical="@dimen/margin_base_x2"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,29 +28,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/margin_base_x2">
+            android:padding="@dimen/margin_base_x2">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:id="@+id/item_created_course_name"
                 android:text="@string/course_name"
                 android:singleLine="true"
                 android:textColor="@color/colorButton"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_small"
-                android:gravity="bottom"/>
+                android:gravity="center_vertical"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:id="@+id/item_created_course_price"
                 android:text="@string/course_price"
                 android:textSize="@dimen/text_14"
                 android:textStyle="italic"
-                android:textColor="@color/colorAccent"/>
+                android:textColor="@color/colorAccent"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/x"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="italic"
+                android:id="@+id/item_created_percent"
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
     </LinearLayout>

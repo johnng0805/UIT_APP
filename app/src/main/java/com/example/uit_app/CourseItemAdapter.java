@@ -20,16 +20,15 @@ import java.util.List;
 
 import Model.CourseItem;
 
-public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.MyViewHolder>  {
+public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.MyViewHolder> {
 
     private List<CourseItem> courseItems;
     private Context context;
     private static String url = "http://149.28.24.98:9000/upload/course_image/";
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView courseImg;
         public TextView courseName, coursePrice;
-        private CourseClickListener clickListener;
 
         public MyViewHolder(View view) {
             super(view);
@@ -37,16 +36,14 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.My
             courseName = (TextView) view.findViewById(R.id.item_course_label);
             coursePrice = (TextView) view.findViewById(R.id.item_course_price);
 
-            view.setOnClickListener(this);
-        }
-
-        public void setItemClickListener(CourseClickListener clickListener) {
-            this.clickListener = clickListener;
-        }
-
-        @Override
-        public void onClick(View v) {
-            clickListener.onClick(v, getAdapterPosition(), false);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CourseDetailsActivity.class);
+                    intent.putExtra("courseItem", courseItems.get(getAdapterPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -86,18 +83,6 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.My
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .into(courseImg);
-
-        holder.setItemClickListener(new CourseClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                CourseItem courseItemClick = courseItems.get(position);
-
-                Intent intent = new Intent(context, CourseDetailsActivity.class);
-                intent.putExtra("courseItem", courseItemClick);
-
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override

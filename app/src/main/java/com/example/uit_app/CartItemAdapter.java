@@ -1,6 +1,7 @@
 package com.example.uit_app;
 
 import android.content.Context;
+import android.icu.number.NumberFormatter;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import Model.CourseItem;
@@ -35,6 +38,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
             courseName = view.findViewById(R.id.item_cart_name);
             coursePrice = view.findViewById(R.id.item_cart_price);
             courseImg = view.findViewById(R.id.item_cart_img);
+            removeButton = view.findViewById(R.id.item_cart_remove);
         }
     }
 
@@ -61,13 +65,17 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
         ImageView courseImg;
         Button removeButton;
 
+        NumberFormat numberFormat = new DecimalFormat("#,###");
+
         courseName = holder.courseName;
         coursePrice = holder.coursePrice;
         courseImg = holder.courseImg;
         removeButton = holder.removeButton;
 
         courseName.setText(courseItem.getTitle());
-        coursePrice.setText((int)courseItem.getPrice());
+        double price = (double)courseItem.getPrice();
+        String formattedPrice = numberFormat.format(price);
+        coursePrice.setText(formattedPrice);
 
         Picasso.get().load(url+courseItem.getUrl())
                 .placeholder(R.drawable.devices)
@@ -75,6 +83,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .into(courseImg);
+
+        removeButton.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -15,6 +15,11 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.List;
 
 import Model.CourseItem;
@@ -27,11 +32,12 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView courseImg;
-        public TextView courseName, coursePrice;
+        public TextView courseName, coursePrice, coursePercent;
         public MyViewHolder(View view) {
             super(view);
             courseName = (TextView) view.findViewById(R.id.item_created_course_name);
             coursePrice = (TextView) view.findViewById(R.id.item_created_course_price);
+            coursePercent = (TextView) view.findViewById(R.id.item_created_percent);
             courseImg = (ImageView) view.findViewById(R.id.item_created_course_img);
         }
     }
@@ -55,13 +61,20 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
 
         TextView courseName = holder.courseName;
         TextView coursePrice = holder.coursePrice;
+        TextView coursePercent = holder.coursePercent;
         ImageView courseImg = holder.courseImg;
 
         courseName.setText(item.getTitle());
+
+        NumberFormat formatPrice = new DecimalFormat("#,###");
+        NumberFormat formatPercent = new DecimalFormat("#%");
+
+        coursePercent.setText(formatPercent.format(item.getPercent()));
+
         if (item.getPrice() == 0) {
             coursePrice.setText(R.string.free);
         } else {
-            coursePrice.setText(String.valueOf(item.getPrice()));
+            coursePrice.setText(formatPrice.format(item.getPrice()));
         }
 
         Picasso.get().load(url+item.getUrl())
