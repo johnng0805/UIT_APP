@@ -89,4 +89,16 @@
     <string name="time_created">YYYY-MM-DD</string>
     <string name="price">Price:</string>
 
+    <!--Search Fragment-->
+    <string name="search_hint">Search here</string>
+    <string name="result">Result</string>
+    <string name="search">Search</string>
+
+    <!--Cart Fragment-->
+    <string name="title">Your Cart</string>
+    <string name="pay">Pay</string>
+    <string name="total">Total:</string>
+    <string name="cart_price">0.000.000</string>
+    <string name="x">x</string>
+
 </resources>

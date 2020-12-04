@@ -1,7 +1,10 @@
 package com.example.uit_app;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +15,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -33,7 +41,8 @@ public class CourseFragment extends Fragment {
     TextView title;
 
     RecyclerView courseView;
-    ArrayList<CourseItem> courseCreated;
+    ArrayList<CourseItem> courseCreated = new ArrayList<CourseItem>();
+    PersonalCourseAdapter personalCourseAdapter;
 
     Button createButton;
 
@@ -42,6 +51,10 @@ public class CourseFragment extends Fragment {
     AlertDialog alertDialog;
 
     UserAccount userAccount;
+    SharedPreferences sharedPreferences;
+
+    String joinedCourseResponse;
+    boolean joinedFlag = false;
 
     private static String url = "http://149.28.24.98:9000/join/get-courses-joined-by-user/";
 
@@ -61,9 +74,16 @@ public class CourseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_course, container, false);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         title = rootView.findViewById(R.id.course_fragment_title);
         courseView = rootView.findViewById(R.id.course_fragment_view);
         createButton = rootView.findViewById(R.id.create_course_btn);
+
+        personalCourseAdapter = new PersonalCourseAdapter(courseCreated);
+        courseView.setAdapter(personalCourseAdapter);
+        courseView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL, false));
 
         loadJoinedCourse();
 
@@ -76,7 +96,8 @@ public class CourseFragment extends Fragment {
         iMyService = retrofit.create(IMyService.class);
         alertDialog = new SpotsDialog.Builder().setContext(getContext()).build();
 
-        iMyService.getJoinedCourse(url+userAccount.getID())
+        alertDialog.show();
+        iMyService.getJoinedCourse(url+sharedPreferences.getString("id", ""))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
@@ -87,24 +108,55 @@ public class CourseFragment extends Fragment {
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull String s) {
-                        if (!s.isEmpty()) {
-                            debugFunc(s);
-                        }
+                        joinedCourseResponse = s;
+                        joinedFlag = true;
                     }
 
                     @Override
                     public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onComplete() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
 
+                        if (joinedFlag) {
+                            try {
+                                JSONArray ja = new JSONArray(joinedCourseResponse);
+
+                                for (int i = 0; i < ja.length(); i++) {
+                                    JSONObject jo = ja.getJSONObject(i);
+                                    JSONObject joCourse = jo.getJSONObject("idCourse");
+
+                                    CourseItem item = new CourseItem();
+                                    item.setID(joCourse.getString("_id"));
+                                    item.setTitle(joCourse.getString("name"));
+                                    item.setUrl(joCourse.getString("image"));
+                                    item.setPercent(jo.getInt("percentCompleted"));
+                                    item.setCreateAt(jo.getString("created_at"));
+
+                                    courseCreated.add(item);
+                                    personalCourseAdapter.notifyDataSetChanged();
+                                }
+                            } catch (JSONException jx) {
+                                jx.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(getContext(), "No data.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
-    }
-
-    private void debugFunc(String s) {
-        String temp = s;
     }
 }

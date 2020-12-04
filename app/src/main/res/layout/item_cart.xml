@@ -3,29 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="60dp"
     android:background="@drawable/ctn_white_background_2"
-    app:cardCornerRadius="@dimen/margin_base"
     android:elevation="@dimen/elevation_fragment"
+    app:cardCornerRadius="@dimen/margin_base"
     android:layout_marginVertical="@dimen/margin_base_x2"
     android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/ll_item_created_course">
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/item_created_course_img"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/item_cart_img"
             android:src="@drawable/devices"
             android:scaleType="centerCrop"
             android:contentDescription="@string/course_description"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/margin_base_x2">
@@ -33,35 +33,33 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/item_created_course_name"
+                android:id="@+id/item_cart_name"
                 android:text="@string/course_name"
-                android:singleLine="true"
                 android:textColor="@color/colorButton"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_small"
-                android:gravity="center_vertical"/>
+                android:gravity="bottom"
+                android:singleLine="true"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/item_created_course_price"
+                android:id="@+id/item_cart_price"
                 android:text="@string/course_price"
                 android:textSize="@dimen/text_14"
                 android:textStyle="italic"
-                android:textColor="@color/colorAccent"
-                android:gravity="center_vertical"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/x"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_medium"
-                android:textStyle="italic"
-                android:id="@+id/item_created_percent"
-                android:layout_gravity="center_vertical"/>
+                android:textColor="@color/colorAccent"/>
         </LinearLayout>
 
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/item_cart_remove"
+            android:background="@drawable/item_cart_remove_background"
+            android:text="@string/x"
+            android:textSize="@dimen/text_large"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

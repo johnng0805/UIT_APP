@@ -1,11 +1,14 @@
 package com.example.uit_app;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,19 +29,33 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
     private Context context;
     private String url = "http://149.28.24.98:9000/upload/category/";
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    SharedPreferences sharedPreferences;
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView categoryImg;
         public TextView categoryName;
+        private CourseClickListener clickListener;
         public MyViewHolder(View view) {
             super(view);
             categoryImg = (ImageView) view.findViewById(R.id.item_categories_img);
             categoryName = (TextView) view.findViewById(R.id.item_categories_name);
+            view.setOnClickListener(this);
+        }
+
+        public void setItemClickListener(CourseClickListener clickListener) {
+            this.clickListener = clickListener;
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onClick(v, getAdapterPosition(), false);
         }
     }
 
     public CategoryItemAdapter(Context context, List<CategoryItem> categoryItems) {
         this.context = context;
         this.categoryItems = categoryItems;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @NonNull
@@ -65,6 +82,13 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .into(catImg);
+
+        holder.setItemClickListener(new CourseClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+
+            }
+        });
     }
 
     @Override

@@ -82,4 +82,11 @@ public interface IMyService {
     //Course Detail
     @GET
     Observable<String> getListComment(@Url String urlGet);
+
+    //Search
+    @GET
+    Observable<String> getSearchCourse(@Url String urlGet);
+
+    @GET
+    Observable<String> getCourseByCategory(@Url String urlGet);
 }
