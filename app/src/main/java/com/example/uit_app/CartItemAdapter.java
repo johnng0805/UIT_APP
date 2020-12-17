@@ -1,8 +1,10 @@
 package com.example.uit_app;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.icu.number.NumberFormatter;
 import android.media.Image;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -85,6 +91,43 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                 .into(courseImg);
 
         removeButton.setVisibility(View.VISIBLE);
+
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Remove(position);
+            }
+        });
+    }
+
+    private void Remove(int position) {
+        courseItems.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, courseItems.size());
+
+        JSONArray cartArray = new JSONArray();
+        for (int i = 0; i < courseItems.size(); i++) {
+
+            JSONObject jo = new JSONObject();
+            try {
+                jo.put("courseImage", courseItems.get(i).getUrl());
+                jo.put("author", courseItems.get(i).getAuthor());
+                jo.put("courseID", courseItems.get(i).getID());
+                jo.put("title", courseItems.get(i).getTitle());
+                jo.put("price", courseItems.get(i).getPrice());
+                jo.put("discount", courseItems.get(i).getDiscount());
+            } catch (JSONException jx) {
+                jx.printStackTrace();
+            }
+
+            cartArray.put(jo);
+        }
+
+        SharedPreferences sharedPreferences;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("cartArray", cartArray.toString());
+        editor.apply();
     }
 
     @Override

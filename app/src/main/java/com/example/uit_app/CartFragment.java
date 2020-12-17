@@ -95,6 +95,10 @@ public class CartFragment extends Fragment {
                     courseItems.add(item);
                     price += (double)item.getPrice();
                 }
+                if (cartItemAdapter.getItemCount() == 0) {
+                    price = 0;
+                    payBtn.setVisibility(View.GONE);
+                }
                 totalPrice.setText(numberFormat.format(price));
                 cartItemAdapter.notifyDataSetChanged();
             }
