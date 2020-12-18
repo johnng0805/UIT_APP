@@ -1,5 +1,6 @@
 package com.example.uit_app;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,6 +30,8 @@ import Model.CourseItem;
 import Retrofit.IMyService;
 import retrofit2.Retrofit;
 import Retrofit.*;
+
+import static android.app.Activity.RESULT_OK;
 
 public class CartFragment extends Fragment {
 
@@ -68,7 +71,31 @@ public class CartFragment extends Fragment {
 
         loadCourseInCart();
 
+        payBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PayActivity.class);
+                startActivityForResult(intent, 1111);
+            }
+        });
+
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1111) {
+            assert data != null;
+            if (data.getBooleanExtra("isPaid", false)) {
+                cartItemView.setVisibility(View.GONE);
+                SharedPreferences sharedPreferences;
+                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("cartArray");
+                editor.apply();
+            }
+        }
     }
 
     private void loadCourseInCart() {

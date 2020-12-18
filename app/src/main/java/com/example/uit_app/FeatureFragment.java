@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.denzcoskun.imageslider.ImageSlider;
+//import com.denzcoskun.imageslider.ImageSlider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +39,7 @@ import Retrofit.*;
 
 public class FeatureFragment extends Fragment {
 
-    ImageSlider imageSlider;
+    //ImageSlider imageSlider;
     boolean flagCategory = false;
 
     //---Courses---
@@ -69,7 +69,7 @@ public class FeatureFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_feature, container, false);
 
-        imageSlider = rootView.findViewById(R.id.image_slider);
+        //imageSlider = rootView.findViewById(R.id.image_slider);
         latestView = rootView.findViewById(R.id.latest_view);
         freeView = rootView.findViewById(R.id.free_view);
         bestView = rootView.findViewById(R.id.best_view);

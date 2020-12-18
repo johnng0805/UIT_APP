@@ -16,11 +16,8 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            app:auto_cycle="true"
             android:scrollbarStyle="insideInset"
             android:id="@+id/image_slider"
-            app:period="1000"
-            app:delay="10000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>

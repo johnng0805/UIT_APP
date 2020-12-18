@@ -21,6 +21,7 @@
         <activity android:name=".AccountPasswordActivity"/>
         <activity android:name=".AccountAvatarActivity"/>
         <activity android:name=".CourseDetailsActivity"/>
+        <activity android:name=".PayActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="UIT APP">

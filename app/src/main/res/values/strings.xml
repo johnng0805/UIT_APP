@@ -101,4 +101,7 @@
     <string name="cart_price">0.000.000</string>
     <string name="x">x</string>
 
+    <!--Pay Activity-->
+    <string name="card_input">Input Your Credit Card</string>
+
 </resources>
