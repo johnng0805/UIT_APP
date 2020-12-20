@@ -92,6 +92,6 @@ public interface IMyService {
     @GET
     Observable<String> getCourseByCategory(@Url String urlGet);
 
-    @POST("/payment/pay")
+    @POST("payment/pay")
     Observable<String> pay(@Body RequestBody body);
 }

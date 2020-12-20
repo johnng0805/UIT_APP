@@ -70,12 +70,9 @@ public class PayActivity extends AppCompatActivity {
         cartArraySend = new JSONArray();
         for (int i = 0; i < cartArray.length(); i++) {
             try {
-                JSONObject jo = cartArray.getJSONObject(i);
+                JSONObject jo = new JSONObject();
+                jo.put("_id", cartArray.getJSONObject(i).getString("courseID"));
                 cartArraySend.put(jo);
-                int priceTemp = (int) jo.get("price");
-                price += priceTemp;
-
-                sendJO.put("idCourse", jo.get("courseID"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -84,9 +81,6 @@ public class PayActivity extends AppCompatActivity {
         try {
             //sendJO = new JSONObject();
             sendJO.put("cart", cartArraySend);
-            sendJO.put("amount", price);
-            sendJO.put("name", sharedPreferences.getString("name", ""));
-            sendJO.put("email", sharedPreferences.getString("email", ""));
             sendJO.put("idUser", sharedPreferences.getString("id", ""));
         } catch (JSONException jx) {
             jx.printStackTrace();
@@ -129,7 +123,7 @@ public class PayActivity extends AppCompatActivity {
                                     cardJO.put("funding", token.getCard().getFunding());
                                     cardJO.put("last4", token.getCard().getLast4());
                                     cardJO.put("metadata", token.getCard().getMetadata());
-                                    cardJO.put("name", "johnng0805@gmail.com");
+                                    cardJO.put("name", "caohoangtu1357@gmail.com");
                                     cardJO.put("tokenization_method", token.getCard().getTokenizationMethod());
 
                                 } catch (JSONException jx) {
@@ -141,20 +135,20 @@ public class PayActivity extends AppCompatActivity {
                                     tokenJO.put("object", "token");
                                     tokenJO.put("card", cardJO);
                                     tokenJO.put("client_ip", "");
-                                    tokenJO.put("created", token.getCreated());
+                                    tokenJO.put("created", token.getCreated().getTime());
                                     tokenJO.put("type", "card");
                                     tokenJO.put("used", token.getUsed());
-                                    tokenJO.put("email", "johnng0805@gmail.com");
+                                    tokenJO.put("email", sharedPreferences.getString("email", ""));
                                     tokenJO.put("livemode", token.getLivemode());
                                     tokenJO.put("name", sharedPreferences.getString("name", ""));
-                                    tokenJO.put("amount", price);
                                     tokenJO.put("bank_account", token.getBankAccount());
+
                                 } catch (JSONException jx) {
                                     jx.printStackTrace();
                                 }
 
                                 try {
-                                    sendJO.put("stripeToken", token.getId());
+                                    sendJO.put("token", tokenJO);
                                 } catch (JSONException jx) {
                                     jx.printStackTrace();
                                 }
@@ -175,7 +169,6 @@ public class PayActivity extends AppCompatActivity {
     private void Pay() {
         retrofit = RetrofitClient.getInstance();
         iMyService = retrofit.create(IMyService.class);
-
         alertDialog = new SpotsDialog.Builder().setContext(this).build();
         alertDialog.show();
 
