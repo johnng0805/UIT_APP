@@ -75,6 +75,7 @@
 
     <!--Course Detail-->
     <string name="join_btn">Join</string>
+    <string name="joined_btn">Joined</string>
     <string name="rate_btn">Rate</string>
     <string name="overview_text">Overview Placeholder</string>
     <string name="course_overview">Course Overview</string>

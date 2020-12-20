@@ -62,9 +62,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
     JSONArray cartArray = new JSONArray();
     boolean checkCart = false;
+    String joinedCourse;
+    boolean checkJoined = false;
 
     private static String urlImg = "http://149.28.24.98:9000/upload/course_image/";
     private static String urlComment = "http://149.28.24.98:9000/comment/get-parent-comment-by-lesson/";
+    private static String urlJoinedCourse = "http://149.28.24.98:9000/join/get-courses-joined-by-user/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +83,8 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         retrofit = RetrofitClient.getInstance();
         iMyService = retrofit.create(IMyService.class);
+
+        checkJoinedCourse();
 
         courseRelatedItem = new ArrayList<CourseItem>();
         loadRelatedCourse();
@@ -175,10 +180,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 });
     }
 
-    private void debugFun(String response) {
-        String temp = response;
-        String userID = sharedPreferences.getString("id", "");
-    }
 
     private void addToCart() {
         String stringFromJSONArray = cartArray.toString();
@@ -206,17 +207,70 @@ public class CourseDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void debug(SharedPreferences sharedPreferences) {
-        String id = sharedPreferences.getString("id", "");
-        String name = sharedPreferences.getString("name", "");
+    private void checkJoinedCourse() {
+        alertDialog.show();
+        iMyService.getJoinedCourse(urlJoinedCourse+sharedPreferences.getString("id", ""))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        joinedCourse = s;
+                        checkJoined = true;
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+
+                        Toast.makeText(CourseDetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+
+                        if (checkJoined) {
+                            try {
+                                JSONArray ja = new JSONArray(joinedCourse);
+                                for (int i = 0; i < ja.length(); i++) {
+                                    JSONObject jo = ja.getJSONObject(i);
+                                    JSONObject joCourse = jo.getJSONObject("idCourse");
+
+                                    if (courseItem.getID().equals(joCourse.getString("_id"))) {
+                                        addBtn.setText(R.string.joined_btn);
+                                        addBtn.setClickable(false);
+                                        addBtn.setFocusable(false);
+                                        break;
+                                    }
+                                }
+                            } catch (JSONException jx) {
+                                jx.printStackTrace();
+                            }
+                        }
+                    }
+                });
     }
 
     private void joinCourse() {
 
         addBtn.setClickable(false);
         addBtn.setFocusable(false);
-
-        debug(sharedPreferences);
 
         alertDialog.show();
         iMyService.joinCourse(sharedPreferences.getString("id", ""), courseItem.getID())
