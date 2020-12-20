@@ -103,7 +103,7 @@ public class PayActivity extends AppCompatActivity {
                                 try {
                                     cardJO.put("id", token.getCard().getId());
                                     cardJO.put("object", "card");
-                                    cardJO.put("address_city", token.getCard().getAddressCity());
+                                    /*cardJO.put("address_city", token.getCard().getAddressCity());
                                     cardJO.put("address_country", token.getCard().getAddressCountry());
                                     cardJO.put("address_line1", token.getCard().getAddressLine1());
                                     cardJO.put("address_line1_check", token.getCard().getAddressLine1Check());
@@ -124,7 +124,7 @@ public class PayActivity extends AppCompatActivity {
                                     cardJO.put("last4", token.getCard().getLast4());
                                     cardJO.put("metadata", token.getCard().getMetadata());
                                     cardJO.put("name", "caohoangtu1357@gmail.com");
-                                    cardJO.put("tokenization_method", token.getCard().getTokenizationMethod());
+                                    cardJO.put("tokenization_method", token.getCard().getTokenizationMethod());*/
 
                                 } catch (JSONException jx) {
                                     jx.printStackTrace();
