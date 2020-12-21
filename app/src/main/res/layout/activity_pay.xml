@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_screen"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_base_x4"
+    android:clipToPadding="false"
+    tool:context=".PayActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ctn_white_background"
+        android:elevation="@dimen/elevation_fragment"
+        android:padding="@dimen/margin_base_x4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/stripe_logo"
+            android:src="@drawable/stripelogo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:contentDescription="@string/logo"
+            android:elevation="@dimen/elevation_fragment" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_input_title"
+            android:text="@string/card_input"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            android:textColor="@color/colorButton"
+            app:layout_constraintTop_toBottomOf="@id/stripe_logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/margin_base_x2" />
+
+        <com.stripe.android.view.CardInputWidget
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_input_widget"
+            app:layout_constraintTop_toBottomOf="@id/card_input_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/margin_base_x2" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/card_pay_btn"
+            android:background="@drawable/btn_background_normal"
+            android:elevation="@dimen/elevation_fragment"
+            android:text="@string/pay"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/colorBtnText"
+            app:layout_constraintTop_toBottomOf="@id/card_input_widget"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/margin_base_x3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

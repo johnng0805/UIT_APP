@@ -60,8 +60,14 @@ public class CourseDetailsActivity extends AppCompatActivity {
     Retrofit retrofit;
     AlertDialog alertDialog;
 
+    JSONArray cartArray = new JSONArray();
+    boolean checkCart = false;
+    String joinedCourse;
+    boolean checkJoined = false;
+
     private static String urlImg = "http://149.28.24.98:9000/upload/course_image/";
     private static String urlComment = "http://149.28.24.98:9000/comment/get-parent-comment-by-lesson/";
+    private static String urlJoinedCourse = "http://149.28.24.98:9000/join/get-courses-joined-by-user/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,13 +81,31 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         setUIReference();
 
+        retrofit = RetrofitClient.getInstance();
+        iMyService = retrofit.create(IMyService.class);
+
+        checkJoinedCourse();
+
         courseRelatedItem = new ArrayList<CourseItem>();
         loadRelatedCourse();
+
+        try {
+            cartArray = new JSONArray(sharedPreferences.getString("cartArray", ""));
+            for (int i = 0; i < cartArray.length(); i++) {
+                checkCart = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                joinCourse();
+                if (courseItem.getPrice() == 0) {
+                    joinCourse();
+                } else {
+                    addToCart();
+                }
             }
         });
     }
@@ -156,22 +180,97 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 });
     }
 
-    private void debugFun(String response) {
-        String temp = response;
-        String userID = sharedPreferences.getString("id", "");
-    }
 
     private void addToCart() {
+        String stringFromJSONArray = cartArray.toString();
+        if (stringFromJSONArray.contains(courseItem.getID())) {
+            Toast.makeText(this, "Course is already in cart.", Toast.LENGTH_SHORT).show();
+        } else {
+            JSONObject jo = new JSONObject();
+            try {
+                jo.put("courseImage", courseItem.getUrl());
+                jo.put("author", courseItem.getAuthor());
+                jo.put("courseID", courseItem.getID());
+                jo.put("title", courseItem.getTitle());
+                jo.put("price", courseItem.getPrice());
+                jo.put("discount", courseItem.getDiscount());
 
+            } catch (JSONException jx) {
+                jx.printStackTrace();
+            }
+
+            cartArray.put(jo);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("cartArray", cartArray.toString());
+            editor.apply();
+            Toast.makeText(this, "Added to cart.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void checkJoinedCourse() {
+        alertDialog.show();
+        iMyService.getJoinedCourse(urlJoinedCourse+sharedPreferences.getString("id", ""))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        joinedCourse = s;
+                        checkJoined = true;
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+
+                        Toast.makeText(CourseDetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+
+                        if (checkJoined) {
+                            try {
+                                JSONArray ja = new JSONArray(joinedCourse);
+                                for (int i = 0; i < ja.length(); i++) {
+                                    JSONObject jo = ja.getJSONObject(i);
+                                    JSONObject joCourse = jo.getJSONObject("idCourse");
+
+                                    if (courseItem.getID().equals(joCourse.getString("_id"))) {
+                                        addBtn.setText(R.string.joined_btn);
+                                        addBtn.setClickable(false);
+                                        addBtn.setFocusable(false);
+                                        break;
+                                    }
+                                }
+                            } catch (JSONException jx) {
+                                jx.printStackTrace();
+                            }
+                        }
+                    }
+                });
     }
 
     private void joinCourse() {
 
         addBtn.setClickable(false);
         addBtn.setFocusable(false);
-
-        retrofit = RetrofitClient.getInstance();
-        iMyService = retrofit.create(IMyService.class);
 
         alertDialog.show();
         iMyService.joinCourse(sharedPreferences.getString("id", ""), courseItem.getID())
@@ -188,7 +287,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
                         if (stringResponse.isSuccessful()) {
                             joined = true;
                         }
-                        debugFun(stringResponse.toString());
                     }
 
                     @Override
@@ -212,9 +310,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
                         }, 500);
 
                         if (!joined) {
-                            Toast.makeText(CourseDetailsActivity.this, "Cannot join course.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CourseDetailsActivity.this, "You have already joined.", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(CourseDetailsActivity.this, "Joined Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CourseDetailsActivity.this, "Joined Successfully.", Toast.LENGTH_SHORT).show();
                         }
 
                         addBtn.setClickable(true);
