@@ -194,6 +194,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 jo.put("title", courseItem.getTitle());
                 jo.put("price", courseItem.getPrice());
                 jo.put("discount", courseItem.getDiscount());
+                jo.put("categoryID", courseItem.getCategoryID());
 
             } catch (JSONException jx) {
                 jx.printStackTrace();

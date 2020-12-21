@@ -71,7 +71,14 @@ public class PayActivity extends AppCompatActivity {
         for (int i = 0; i < cartArray.length(); i++) {
             try {
                 JSONObject jo = new JSONObject();
+                JSONObject jNum = new JSONObject();
+
                 jo.put("_id", cartArray.getJSONObject(i).getString("courseID"));
+                jo.put("price", cartArray.getJSONObject(i).getString("price"));
+                jo.put("discount", cartArray.getJSONObject(i).getString("discount"));
+                jo.put("category", cartArray.getJSONObject(i).getString("categoryID"));
+
+                //jNum.put(String.valueOf(i), jo);
                 cartArraySend.put(jo);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -113,16 +120,12 @@ public class PayActivity extends AppCompatActivity {
                                     cardJO.put("address_zip_check", token.getCard().getAddressZipCheck());
                                     cardJO.put("brand", token.getCard().getBrand());
                                     cardJO.put("country", token.getCard().getCountry());
-                                    cardJO.put("number", card.getNumber());
-                                    cardJO.put("cvc", card.getCvc());
-                                    cardJO.put("cvc_check", "pass");
+                                    cardJO.put("cvc_check", token.getCard().getCvcCheck());
                                     cardJO.put("dynamic_last4", "");
                                     cardJO.put("exp_month", token.getCard().getExpMonth());
                                     cardJO.put("exp_year", token.getCard().getExpYear());
-                                    cardJO.put("fingerprint", token.getCard().getFingerprint());
                                     cardJO.put("funding", token.getCard().getFunding());
                                     cardJO.put("last4", token.getCard().getLast4());
-                                    cardJO.put("metadata", token.getCard().getMetadata());
                                     cardJO.put("name", "caohoangtu1357@gmail.com");
                                     cardJO.put("tokenization_method", token.getCard().getTokenizationMethod());*/
 
