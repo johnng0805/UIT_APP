@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="30dp"
-    android:paddingEnd="30dp"
-    android:paddingVertical="30dp"
+    android:padding="@dimen/margin_base_x4"
     android:clipToPadding="false"
-    tools:context=".AccountFragment">
+    tools:context=".AccountFragment"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout_ctn"
         android:layout_width="match_parent"
-        android:layout_height="540dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +35,7 @@
                 android:src="@drawable/default_cover"
                 android:scaleType="centerCrop"
                 android:id="@+id/imgview_cover"
-                android:contentDescription="cover image"/>
+                android:contentDescription="@string/img_logo"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -95,9 +94,11 @@
             app:layout_constraintBottom_toTopOf="@id/logout_btn"
             app:layout_constraintLeft_toLeftOf="@id/constraintLayout_ctn"
             app:layout_constraintRight_toRightOf="@id/constraintLayout_ctn"
+            app:layout_constrainedHeight="true"
             android:paddingVertical="10dp"
             android:paddingHorizontal="10dp"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            android:layout_marginVertical="@dimen/margin_base_x2">
 
             <Button
                 android:id="@+id/person_information_btn"
@@ -182,8 +183,8 @@
 
         <Button
             android:id="@+id/logout_btn"
-            android:layout_width="75dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/login_button"
             android:text="@string/logout"
             android:textColor="@color/colorBtnText"
@@ -191,7 +192,8 @@
             app:layout_constraintLeft_toLeftOf="@id/constraintLayout_ctn"
             app:layout_constraintRight_toRightOf="@id/constraintLayout_ctn"
             app:layout_constraintBottom_toBottomOf="@id/constraintLayout_ctn"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="@dimen/margin_base_x4"
+            android:elevation="@dimen/elevation_fragment"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

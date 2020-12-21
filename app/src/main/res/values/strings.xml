@@ -2,7 +2,7 @@
     <string name="app_name">My App</string>
     <string name="login_text">LOGIN</string>
     <string name="register_text">REGISTER</string>
-    <string name="forgot_password_text">Forgot password\?</string>
+    <string name="forgot_password_text">Forgot password?</string>
     <string name="logo">Logo</string>
     <string name="strphone">Phone Number:</string>
     <string name="strdescript">Description:</string>
@@ -20,6 +20,7 @@
     <string name="login_password_hint">Password</string>
     <string name="account_acti_title">Personal Information</string>
     <string name="save_text">Save</string>
+    <string name="token">Token</string>
 
     <!--Account Fragment-->
     <string name="logout">LOGOUT</string>

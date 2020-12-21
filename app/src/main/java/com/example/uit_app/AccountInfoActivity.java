@@ -31,7 +31,7 @@ import Retrofit.RetrofitClient;
 public class AccountInfoActivity extends AppCompatActivity {
 
     EditText nameET, genderET, descriptionET, phoneET, addressET;
-    Button backBtn, saveBtn;
+    Button saveBtn;
 
     UserAccount userAccount;
     IMyService iMyService;
@@ -56,15 +56,6 @@ public class AccountInfoActivity extends AppCompatActivity {
         userAccount = (UserAccount) getIntent().getSerializableExtra("userAcc");
         alertDialog = new SpotsDialog.Builder().setContext(this).build();
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountInfoActivity.this, HomeScreenActivity.class);
-                intent.putExtra("userAcc", userAccount);
-                startActivity(intent);
-            }
-        });
-
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +73,6 @@ public class AccountInfoActivity extends AppCompatActivity {
         addressET = findViewById(R.id.aa_address_text);
 
         saveBtn = findViewById(R.id.btnSavePassword);
-        backBtn = findViewById(R.id.back_button);
     }
 
     private void setPreferences() {

@@ -7,6 +7,7 @@
     <dimen name="margin_base_x2">10dp</dimen>
     <dimen name="margin_base_x3">15dp</dimen>
     <dimen name="margin_base_x4">20dp</dimen>
+    <dimen name="margin_base_x5">25dp</dimen>
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_14">14sp</dimen>
     <dimen name="text_small">16sp</dimen>

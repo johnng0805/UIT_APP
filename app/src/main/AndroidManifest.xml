@@ -15,16 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true">
-        <activity android:name=".AccountInfoActivity"/>
-        <activity android:name=".HomeScreenActivity"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".AccountPasswordActivity"/>
-        <activity android:name=".AccountAvatarActivity"/>
-        <activity android:name=".CourseDetailsActivity"/>
-        <activity android:name=".PayActivity" />
+        <activity android:name=".AccountInfoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".HomeScreenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".AccountPasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".AccountAvatarActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseDetailsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PayActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
-            android:label="UIT APP">
+            android:label="UIT APP"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
