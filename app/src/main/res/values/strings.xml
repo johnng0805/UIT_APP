@@ -75,6 +75,7 @@
 
     <!--Course Detail-->
     <string name="join_btn">Join</string>
+    <string name="joined_btn">Joined</string>
     <string name="rate_btn">Rate</string>
     <string name="overview_text">Overview Placeholder</string>
     <string name="course_overview">Course Overview</string>
@@ -100,5 +101,8 @@
     <string name="total">Total:</string>
     <string name="cart_price">0.000.000</string>
     <string name="x">x</string>
+
+    <!--Pay Activity-->
+    <string name="card_input">Input Your Credit Card</string>
 
 </resources>
