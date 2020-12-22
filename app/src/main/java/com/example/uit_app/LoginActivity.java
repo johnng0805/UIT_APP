@@ -134,6 +134,13 @@ public class LoginActivity extends AppCompatActivity {
 
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+                                        if (!sharedPreferences.getString("email", "").equals(userAccount.getMail())) {
+                                            editor.putBoolean("diffUser", true);
+                                        } else {
+                                            editor.putBoolean("diffUser", false);
+                                        }
+
+                                        editor.putBoolean("diffUser", true);
                                         editor.putString("name", userAccount.getHoten());
                                         editor.putString("phone", userAccount.getSdt());
                                         editor.putString("image", userAccount.getAva());
@@ -144,7 +151,6 @@ public class LoginActivity extends AppCompatActivity {
                                         editor.putString("address", userAccount.getDiachia());
                                         editor.putString("password", userAccount.getMatkhau());
                                         editor.putString("id", userAccount.getID());
-                                        editor.apply();
 
                                         flag = true;
                                     } catch (JSONException e) {

@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,13 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.denzcoskun.imageslider.ImageSlider;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 import Model.CategoryItem;
 import Model.CourseItem;
@@ -33,13 +35,13 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import Retrofit.*;
 
 public class FeatureFragment extends Fragment {
 
-    //ImageSlider imageSlider;
+    ImageSlider imageSlider;
+    ArrayList<SlideModel> imageList;
     boolean flagCategory = false;
 
     //---Courses---
@@ -69,11 +71,17 @@ public class FeatureFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_feature, container, false);
 
-        //imageSlider = rootView.findViewById(R.id.image_slider);
+        imageSlider = rootView.findViewById(R.id.image_slider);
         latestView = rootView.findViewById(R.id.latest_view);
         freeView = rootView.findViewById(R.id.free_view);
         bestView = rootView.findViewById(R.id.best_view);
         categoriesView = rootView.findViewById(R.id.categories_view);
+
+        imageList = new ArrayList<SlideModel>();
+        imageList.add(new SlideModel("https://images.unsplash.com/photo-1599016012665-13b74bb3b528?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1493&q=80", "Android", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel("https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80", "Study", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel("https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", "Work", ScaleTypes.CENTER_CROP));
+        imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP);
 
         //TODO Here
         categoryItems = new ArrayList<CategoryItem>();

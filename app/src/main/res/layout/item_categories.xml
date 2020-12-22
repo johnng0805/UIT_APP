@@ -6,7 +6,7 @@
     android:layout_width="140dp"
     android:layout_height="80dp"
     android:background="@drawable/ctn_white_background_2"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="@dimen/margin_base"
     android:layout_margin="@dimen/margin_base">
 
     <RelativeLayout

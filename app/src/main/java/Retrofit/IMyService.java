@@ -1,5 +1,7 @@
 package Retrofit;
 
+import androidx.annotation.NonNull;
+
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -65,12 +67,18 @@ public interface IMyService {
     //FeatureFragment - Week 3
     @GET("category/get-all-category")
     Observable<String>  getAllCategory();
+
     @GET("course/get-all")
     Observable<String>  getAllCourse();
+
     @GET("course/get-free")
     Observable<String>  getFreeCourse();
+
     @GET("course/get-top")
     Observable<String>  getTopCourse();
+
+    @GET()
+    Observable<String> getCategoryByID(@Url String urlGet);
 
     //Joined Course
     @GET
