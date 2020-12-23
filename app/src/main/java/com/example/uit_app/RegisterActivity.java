@@ -35,14 +35,15 @@ public class RegisterActivity extends AppCompatActivity {
     TextView tvLogin;
 
     String name, phone, description, gender, address, email, password, passwordconfirm;
-    String FailText;
 
     UserAccount userAccount;
     IMyService iMyService;
     SharedPreferences sharedPreferences;
     AlertDialog alertDialog;
     CompositeDisposable compositeDisposable =new CompositeDisposable();
+
     boolean flag = false;
+    String serverResponse;
 
     @Override
     protected void onStop() {
@@ -94,7 +95,8 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull Response<String> stringResponse) {
                         if (stringResponse.isSuccessful()) {
-                            if (stringResponse.body().toString().contains("name")) {
+                            assert stringResponse.body() != null;
+                            if (stringResponse.body().contains("name")) {
                                 String responseString = stringResponse.body().toString();
                                 try {
                                     JSONObject jo = new JSONObject(responseString);
@@ -121,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 flag = false;
                             }
                         } else {
-                            flag = false;
+                                flag = false;
                         }
                     }
 
@@ -134,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                     }
                                 }, 500);
-                        Toast.makeText(RegisterActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         flag = false;
 
                     }
@@ -150,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }, 500);
 
 
-                        if (flag == true) {
+                        if (flag) {
                             Intent intent = new Intent(RegisterActivity.this, ActiveAccountActivity.class);
                             intent.putExtra("userAcc", userAccount);
                             intent.putExtra("change",0);
@@ -159,11 +161,10 @@ public class RegisterActivity extends AppCompatActivity {
                             //...
 
                         } else {
-                            Toast.makeText(RegisterActivity.this, FailText, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Something's wrong", Toast.LENGTH_SHORT).show();
                             bntRegister.setClickable(true);
                             bntRegister.setEnabled(true);
                         }
-
                     }
                 });
     }
