@@ -96,6 +96,14 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        forgotpasswordTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassWordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void Login() {

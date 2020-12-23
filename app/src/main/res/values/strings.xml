@@ -109,4 +109,14 @@
     <!--Category Item Activity-->
     <string name="category_title">Category Title</string>
 
+    <!--Forgot Password Activity-->
+    <string name="forgot_pass_title">Please Input Your Email</string>
+    <string name="email_hint">abc@123.com</string>
+    <string name="send">Send</string>
+
+    <!---Reset Password Activity-->
+    <string name="reset_pass_token">Token:</string>
+    <string name="reset_pass_new">New Password:</string>
+    <string name="reset_pass_update">Update</string>
+    <string name="reset_pass_title">Reset Password</string>
 </resources>

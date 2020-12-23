@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_screen"
+    android:padding="@dimen/margin_base_x4"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    tools:context=".ForgotPassWordActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_base_x4"
+        android:paddingVertical="@dimen/margin_fragment"
+        android:clipToPadding="false"
+        android:background="@drawable/ctn_white_background_2"
+        android:elevation="@dimen/elevation_fragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/forgot_pass_title"
+            android:text="@string/forgot_pass_title"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            android:textColor="@color/colorButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/forgot_pass_input_layout"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            app:layout_constraintTop_toBottomOf="@id/forgot_pass_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/forgot_pass_input_text"
+                android:hint="@string/strmail"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="@dimen/margin_base"
+                android:imeOptions="actionSend" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/forgot_pass_sendBtn"
+            android:text="@string/send"
+            android:textColor="@color/colorBtnText"
+            android:background="@drawable/login_button"
+            android:elevation="@dimen/elevation_fragment"
+            app:layout_constraintTop_toBottomOf="@id/forgot_pass_input_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/margin_base_x4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
