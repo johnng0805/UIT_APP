@@ -25,7 +25,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import Model.CourseItem;
 import Model.UserAccount;
@@ -344,7 +350,13 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         courseTitle.setText(courseItem.getTitle());
         courseAuthor.setText(courseItem.getAuthor());
-        coursePrice.setText(String.valueOf(courseItem.getPrice()));
+
+        NumberFormat priceFormat = new DecimalFormat("#,###");
+        coursePrice.setText(priceFormat.format(courseItem.getPrice()));
+
+        /*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        courseDate.setText(simpleDateFormat.format(courseItem.getUpdateTime()));*/
+
         courseDate.setText(String.valueOf(courseItem.getUpdateTime()));
         courseOverview.setText(courseItem.getDescription());
         courseObjective.setText(courseItem.getGoal());

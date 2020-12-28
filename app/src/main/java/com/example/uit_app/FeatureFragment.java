@@ -83,7 +83,12 @@ public class FeatureFragment extends Fragment {
         imageList.add(new SlideModel("https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", "Work", ScaleTypes.CENTER_CROP));
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP);
 
-        //TODO Here
+        //Initialize Retrofit
+        retrofit = RetrofitClient.getInstance();
+        iMyService = retrofit.create(IMyService.class);
+        alertDialog = new SpotsDialog.Builder().setContext(getContext()).build();
+
+        //Load Courses
         categoryItems = new ArrayList<CategoryItem>();
         loadAllCategories();
 
@@ -93,6 +98,9 @@ public class FeatureFragment extends Fragment {
         courseFree = new ArrayList<CourseItem>();
         loadFreeCourses();
 
+        courseLatest = new ArrayList<CourseItem>();
+        loadLatestCourses();
+
         return rootView;
     }
 
@@ -101,11 +109,6 @@ public class FeatureFragment extends Fragment {
     }
 
     private void loadAllCategories() {
-
-        retrofit = RetrofitClient.getInstance();
-        iMyService = retrofit.create(IMyService.class);
-        alertDialog = new SpotsDialog.Builder().setContext(getContext()).build();
-        //alertDialog.show();
 
         iMyService.getAllCategory()
                 .subscribeOn(Schedulers.io())
@@ -166,10 +169,6 @@ public class FeatureFragment extends Fragment {
     }
 
     private void loadFreeCourses() {
-
-        retrofit = RetrofitClient.getInstance();
-        iMyService = retrofit.create(IMyService.class);
-        alertDialog = new SpotsDialog.Builder().setContext(getContext()).build();
 
         iMyService.getFreeCourse()
                 .subscribeOn(Schedulers.io())
@@ -235,11 +234,72 @@ public class FeatureFragment extends Fragment {
                 });
     }
 
-    private void loadBestCourses() {
+    private void loadLatestCourses() {
 
-        retrofit = RetrofitClient.getInstance();
-        iMyService = retrofit.create(IMyService.class);
-        alertDialog = new SpotsDialog.Builder().setContext(getContext()).build();
+        iMyService.getAllCourse()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@io.reactivex.annotations.NonNull String s) {
+                        if (s.contains("vote")) {
+                            try {
+                                JSONArray ja = new JSONArray(s);
+                                int len = ja.length();
+
+                                for (int i = 0; i < 12; i++) {
+                                    JSONObject jo = ja.getJSONObject(i);
+                                    JSONObject joSub = jo.getJSONObject("vote");
+                                    JSONObject joCat = jo.getJSONObject("category");
+                                    JSONObject joAuthor = jo.getJSONObject("idUser");
+
+                                    CourseItem item = new CourseItem();
+                                    item.setTitle(jo.getString("name"));
+                                    item.setAuthorID(joAuthor.getString("_id"));
+                                    item.setAuthor(joAuthor.getString("name"));
+                                    item.setTotalVote(joSub.getInt("totalVote"));
+                                    item.setDiscount(jo.getInt("discount"));
+                                    item.setRanking(jo.getString("ranking"));
+                                    item.setUpdateTime(jo.getString("created_at"));
+                                    item.setID(jo.getString("_id"));
+                                    item.setUrl(jo.getString("image"));
+                                    item.setGoal(jo.getString("goal"));
+                                    item.setDescription(jo.getString("description"));
+                                    item.setCategoryName(joCat.getString("name"));
+                                    item.setCategoryID(joCat.getString("_id"));
+                                    item.setPrice(jo.getInt("price"));
+
+                                    courseLatest.add(item);
+                                }
+
+                                latestCourseAdapter = new CourseItemAdapter(getContext(), courseLatest);
+                                latestView.setAdapter(latestCourseAdapter);
+                                latestView.setLayoutManager(new LinearLayoutManager(getContext(),
+                                        LinearLayoutManager.HORIZONTAL, false));
+                            } catch (JSONException jx) {
+                                jx.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void loadBestCourses() {
 
         iMyService.getTopCourse()
                 .subscribeOn(Schedulers.io())

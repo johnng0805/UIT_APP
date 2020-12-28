@@ -16,6 +16,8 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import Model.CourseItem;
@@ -74,7 +76,8 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.My
         if (courseItem.getPrice() == 0) {
             coursePrice.setText(R.string.free);
         } else {
-            coursePrice.setText(String.valueOf(courseItem.getPrice()));
+            NumberFormat numberFormat = new DecimalFormat("#,###");
+            coursePrice.setText(numberFormat.format(courseItem.getPrice()));
         }
 
         Picasso.get().load(url+courseItem.getUrl())
