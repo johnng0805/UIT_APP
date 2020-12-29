@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="60dp"
     android:background="@drawable/ctn_white_background_2"
     app:cardCornerRadius="@dimen/margin_base"
-    android:elevation="@dimen/elevation_fragment"
+    android:elevation="@dimen/elevation_item"
     android:layout_marginVertical="@dimen/margin_base_x2"
     android:clipToPadding="false">
 
@@ -17,18 +17,21 @@
         android:id="@+id/ll_item_created_course">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:id="@+id/item_created_course_img"
             android:src="@drawable/devices"
             android:scaleType="centerCrop"
             android:contentDescription="@string/course_description"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/margin_base_x2">
+            android:layout_weight="3"
+            android:padding="@dimen/margin_base_x2"
+            android:clipToPadding="false">
 
             <TextView
                 android:layout_width="match_parent"
@@ -39,27 +42,17 @@
                 android:textColor="@color/colorButton"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_small"
-                android:gravity="center_vertical"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_created_course_price"
-                android:text="@string/course_price"
-                android:textSize="@dimen/text_14"
-                android:textStyle="italic"
-                android:textColor="@color/colorAccent"
-                android:gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/x"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_medium"
+                android:textSize="@dimen/text_small"
                 android:textStyle="italic"
                 android:id="@+id/item_created_percent"
-                android:layout_gravity="center_vertical"/>
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
     </LinearLayout>

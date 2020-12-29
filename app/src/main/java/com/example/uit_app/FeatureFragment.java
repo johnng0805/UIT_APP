@@ -3,6 +3,7 @@ package com.example.uit_app;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +83,7 @@ public class FeatureFragment extends Fragment {
         imageList.add(new SlideModel("https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80", "Study", ScaleTypes.CENTER_CROP));
         imageList.add(new SlideModel("https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", "Work", ScaleTypes.CENTER_CROP));
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP);
+        imageSlider.setGravity(Gravity.CENTER);
 
         //Initialize Retrofit
         retrofit = RetrofitClient.getInstance();

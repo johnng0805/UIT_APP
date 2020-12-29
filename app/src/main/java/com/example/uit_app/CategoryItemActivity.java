@@ -41,6 +41,8 @@ public class CategoryItemActivity extends AppCompatActivity {
     Retrofit retrofit;
     AlertDialog alertDialog;
 
+    String debug;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,9 +75,12 @@ public class CategoryItemActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(@NonNull String s) {
+                        debug = s;
                         try {
                             JSONArray ja = new JSONArray(s);
-                            for (int i = 0; i < ja.length(); i++) {
+                            int len = Math.min(ja.length(), 9);
+
+                            for (int i = 0; i < len; i++) {
                                 JSONObject jo = ja.getJSONObject(i);
                                 JSONObject joSub = jo.getJSONObject("vote");
                                 JSONObject joCat = jo.getJSONObject("category");
@@ -129,6 +134,8 @@ public class CategoryItemActivity extends AppCompatActivity {
                                 alertDialog.dismiss();
                             }
                         }, 500);
+
+                        //Toast.makeText(CategoryItemActivity.this, debug, Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -17,7 +17,8 @@
 
     <!-- For Fragments -->
     <dimen name="margin_fragment">30dp</dimen>
-    <dimen name="elevation_fragment">5dp</dimen>
+    <dimen name="elevation_fragment">10dp</dimen>
+    <dimen name="elevation_item">20dp</dimen>
 
     <!--Activity Account Info font size-->
     <dimen name="edit_text_size">20sp</dimen>

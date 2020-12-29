@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import Model.CourseItem;
+import Model.RatingComment;
 import Model.UserAccount;
 import Retrofit.IMyService;
 import dmax.dialog.SpotsDialog;
@@ -57,6 +59,10 @@ public class CourseDetailsActivity extends AppCompatActivity {
     RecyclerView courseRelated, courseRating;
     Button addBtn, rateBtn;
 
+    RatingBar ratingBar;
+    CourseCommentAdapter courseCommentAdapter;
+    ArrayList<RatingComment> ratingComments;
+
     Boolean joined = false;
 
     ArrayList<CourseItem> courseRelatedItem;
@@ -72,7 +78,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
     boolean checkJoined = false;
 
     private static String urlImg = "http://149.28.24.98:9000/upload/course_image/";
-    private static String urlComment = "http://149.28.24.98:9000/comment/get-parent-comment-by-lesson/";
+    private static String urlComment = "http://149.28.24.98:9000/rate/get-rate-by-course/";
     private static String urlJoinedCourse = "http://149.28.24.98:9000/join/get-courses-joined-by-user/";
 
     @Override
@@ -94,6 +100,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         courseRelatedItem = new ArrayList<CourseItem>();
         loadRelatedCourse();
+
+        ratingComments = new ArrayList<RatingComment>();
+        getComment();
 
         try {
             cartArray = new JSONArray(sharedPreferences.getString("cartArray", ""));
@@ -214,6 +223,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
         }
     }
 
+    //TODO
+    //Warning: Deprecated function
+    //Replace this with working CheckIsBought API
     private void checkJoinedCourse() {
         alertDialog.show();
         iMyService.getJoinedCourse(urlJoinedCourse+sharedPreferences.getString("id", ""))
@@ -270,6 +282,61 @@ public class CourseDetailsActivity extends AppCompatActivity {
                                 jx.printStackTrace();
                             }
                         }
+                    }
+                });
+    }
+
+    private void getComment() {
+        iMyService.getListComment(urlComment + courseItem.getID())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        try {
+                            JSONArray ja = new JSONArray(s);
+
+                            for (int i = 0; i < ja.length(); i++) {
+                                JSONObject jo = ja.getJSONObject(i);
+                                JSONObject joUser = jo.getJSONObject("idUser");
+
+                                RatingComment ratingComment = new RatingComment();
+                                ratingComment.setUserName(joUser.getString("name"));
+                                ratingComment.setAvatar(joUser.getString("image"));
+                                ratingComment.setCommentContent(jo.getString("content"));
+                                ratingComment.setNumStar((float) jo.getDouble("numStar"));
+
+                                ratingComments.add(ratingComment);
+                            }
+
+                            courseCommentAdapter = new CourseCommentAdapter(CourseDetailsActivity.this, ratingComments);
+                            courseRating.setAdapter(courseCommentAdapter);
+                            courseRating.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+                                    LinearLayoutManager.VERTICAL, false));
+                        } catch (JSONException jx) {
+                            jx.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+                        Toast.makeText(CourseDetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

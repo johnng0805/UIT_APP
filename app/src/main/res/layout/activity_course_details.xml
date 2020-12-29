@@ -65,7 +65,10 @@
             app:layout_constraintBottom_toTopOf="@id/btn_ctn"
             app:layout_constrainedHeight="true"
             android:paddingHorizontal="@dimen/margin_base_x4"
-            android:layout_marginVertical="@dimen/margin_base_x2">
+            android:paddingVertical="@dimen/margin_base"
+            android:layout_marginVertical="@dimen/margin_base"
+            android:fillViewport="true"
+            android:clipToPadding="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -225,11 +228,22 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_marginTop="@dimen/margin_base_x4"/>
 
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rating_star"
+                    android:progressTint="@color/colorAccent"
+                    app:layout_constraintTop_toBottomOf="@id/user_rating"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/user_rating_view"
-                    app:layout_constraintTop_toBottomOf="@id/user_rating"
+                    app:layout_constraintTop_toBottomOf="@id/rating_star"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:scrollbars="horizontal"/>

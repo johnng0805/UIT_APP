@@ -77,6 +77,9 @@ public interface IMyService {
     @GET("course/get-top")
     Observable<String>  getTopCourse();
 
+    @GET
+    Observable<String> getCourseByID(@Url String urlGet);
+
     @GET()
     Observable<String> getCategoryByID(@Url String urlGet);
 
