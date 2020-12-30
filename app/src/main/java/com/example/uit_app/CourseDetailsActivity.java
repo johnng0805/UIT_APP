@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -33,17 +35,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import Model.CourseItem;
 import Model.RatingComment;
 import Model.UserAccount;
 import Retrofit.IMyService;
+import de.hdodenhof.circleimageview.CircleImageView;
 import dmax.dialog.SpotsDialog;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import Retrofit.*;
@@ -63,6 +69,10 @@ public class CourseDetailsActivity extends AppCompatActivity {
     CourseCommentAdapter courseCommentAdapter;
     ArrayList<RatingComment> ratingComments;
 
+    EditText courseComment;
+    boolean sentComment = false;
+    CircleImageView userAvatar;
+
     Boolean joined = false;
 
     ArrayList<CourseItem> courseRelatedItem;
@@ -74,12 +84,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
     JSONArray cartArray = new JSONArray();
     boolean checkCart = false;
-    String joinedCourse;
     boolean checkJoined = false;
 
     private static String urlImg = "http://149.28.24.98:9000/upload/course_image/";
     private static String urlComment = "http://149.28.24.98:9000/rate/get-rate-by-course/";
-    private static String urlJoinedCourse = "http://149.28.24.98:9000/join/get-courses-joined-by-user/";
+    private static String urlJoinedCourse = "http://149.28.24.98:9000/course/check-is-bough-this-course/";
+    private static String urlAvatar = "http://149.28.24.98:9000/upload/user_image/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,7 +129,26 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 if (courseItem.getPrice() == 0) {
                     joinCourse();
                 } else {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("diffUser", false);
+                    editor.apply();
                     addToCart();
+                }
+            }
+        });
+
+        rateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ratingBar.getRating() == 0 || courseComment.getText() == null) {
+                    Toast.makeText(CourseDetailsActivity.this, "Please rate and comment", Toast.LENGTH_SHORT).show();
+                } else {
+                    postRating();
+
+                    courseComment.clearFocus();
+                    InputMethodManager inputMethodManager = (InputMethodManager) Objects.requireNonNull(getApplicationContext())
+                            .getSystemService(INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(courseComment.getWindowToken(), 0);
                 }
             }
         });
@@ -223,12 +252,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
         }
     }
 
-    //TODO
-    //Warning: Deprecated function
-    //Replace this with working CheckIsBought API
     private void checkJoinedCourse() {
         alertDialog.show();
-        iMyService.getJoinedCourse(urlJoinedCourse+sharedPreferences.getString("id", ""))
+        iMyService.checkJoinedCourse(urlJoinedCourse + courseItem.getID() + "/" +sharedPreferences.getString("id", ""))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
@@ -239,8 +265,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(@NonNull String s) {
-                        joinedCourse = s;
-                        checkJoined = true;
+                        try {
+                            JSONObject jo = new JSONObject(s);
+                            checkJoined = jo.getBoolean("bought");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -265,22 +295,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
                         }, 500);
 
                         if (checkJoined) {
-                            try {
-                                JSONArray ja = new JSONArray(joinedCourse);
-                                for (int i = 0; i < ja.length(); i++) {
-                                    JSONObject jo = ja.getJSONObject(i);
-                                    JSONObject joCourse = jo.getJSONObject("idCourse");
-
-                                    if (courseItem.getID().equals(joCourse.getString("_id"))) {
-                                        addBtn.setText(R.string.joined_btn);
-                                        addBtn.setClickable(false);
-                                        addBtn.setFocusable(false);
-                                        break;
-                                    }
-                                }
-                            } catch (JSONException jx) {
-                                jx.printStackTrace();
-                            }
+                            addBtn.setClickable(false);
+                            addBtn.setFocusable(false);
+                            addBtn.setText(R.string.joined_btn);
                         }
                     }
                 });
@@ -337,6 +354,65 @@ public class CourseDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete() {
 
+                    }
+                });
+    }
+
+    private void postRating() {
+        float userStar = ratingBar.getRating();
+        String userComment = courseComment.getText().toString().trim();
+
+        JSONObject jo = new JSONObject();
+        try {
+            jo.put("idUser", sharedPreferences.getString("id", ""));
+            jo.put("idCourse", courseItem.getID());
+            jo.put("content", userComment);
+            jo.put("numStar", userStar);
+        } catch (JSONException jx) {
+            jx.printStackTrace();
+        }
+
+        alertDialog.show();
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), jo.toString());
+        iMyService.postCommentRating(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        sentComment = true;
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+                        Toast.makeText(CourseDetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alertDialog.dismiss();
+                            }
+                        }, 500);
+                        if (sentComment) {
+                            Toast.makeText(CourseDetailsActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                            getComment();
+                        } else {
+                            Toast.makeText(CourseDetailsActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }
@@ -407,6 +483,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
         rateBtn = findViewById(R.id.btnrate);
         courseRelated = findViewById(R.id.related_course_view);
         courseRating = findViewById(R.id.user_rating_view);
+        ratingBar = findViewById(R.id.rating_star);
+        courseComment = findViewById(R.id.user_comment);
+        userAvatar = findViewById(R.id.user_avatar);
 
         Picasso.get().load(urlImg+courseItem.getUrl())
                 .placeholder(R.drawable.devices)
@@ -414,6 +493,13 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .into(courseImg);
+
+        Picasso.get().load(urlAvatar + sharedPreferences.getString("image", ""))
+                .placeholder(R.drawable.avatar)
+                .error(R.drawable.avatar)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .into(userAvatar);
 
         courseTitle.setText(courseItem.getTitle());
         courseAuthor.setText(courseItem.getAuthor());

@@ -85,6 +85,9 @@ public interface IMyService {
 
     //Joined Course
     @GET
+    Observable<String> checkJoinedCourse(@Url String urlGet);
+
+    @GET
     Observable<String> getJoinedCourse(@Url String urlGet);
 
     @POST("join/create-join")
@@ -95,6 +98,9 @@ public interface IMyService {
     //Course Detail
     @GET
     Observable<String> getListComment(@Url String urlGet);
+
+    @POST("rate/create-rate")
+    Observable<String> postCommentRating(@Body RequestBody body);
 
     //Search
     @GET

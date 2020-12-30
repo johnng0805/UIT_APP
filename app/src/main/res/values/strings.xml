@@ -90,6 +90,7 @@
     <string name="author_name">Author Name</string>
     <string name="time_created">YYYY-MM-DD</string>
     <string name="price">Price:</string>
+    <string name="write_comment_title">Write a comment</string>
 
     <!--Search Fragment-->
     <string name="search_hint">Search here</string>

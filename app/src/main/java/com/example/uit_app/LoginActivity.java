@@ -159,6 +159,7 @@ public class LoginActivity extends AppCompatActivity {
                                         editor.putString("address", userAccount.getDiachia());
                                         editor.putString("password", userAccount.getMatkhau());
                                         editor.putString("id", userAccount.getID());
+                                        editor.apply();
 
                                         flag = true;
                                     } catch (JSONException e) {
