@@ -1,6 +1,7 @@
 package com.example.uit_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
 
     SharedPreferences sharedPreferences;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView categoryImg;
         public TextView categoryName;
         private CourseClickListener clickListener;
@@ -40,6 +41,15 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
             categoryImg = (ImageView) view.findViewById(R.id.item_categories_img);
             categoryName = (TextView) view.findViewById(R.id.item_categories_name);
             view.setOnClickListener(this);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CategoryItemActivity.class);
+                    intent.putExtra("categoryItem", categoryItems.get(getAdapterPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
 
         public void setItemClickListener(CourseClickListener clickListener) {

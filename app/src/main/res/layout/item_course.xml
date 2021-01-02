@@ -5,8 +5,9 @@
     android:layout_width="160dp"
     android:layout_height="100dp"
     android:background="@color/white"
-    android:elevation="@dimen/margin_base"
-    app:cardCornerRadius="@dimen/corner_radius"
+    android:elevation="@dimen/elevation_fragment"
+    android:clipToPadding="false"
+    app:cardCornerRadius="@dimen/margin_base"
     android:layout_margin="@dimen/margin_base">
     
     <LinearLayout

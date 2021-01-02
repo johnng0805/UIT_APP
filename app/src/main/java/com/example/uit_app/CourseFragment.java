@@ -135,20 +135,24 @@ public class CourseFragment extends Fragment {
                         if (joinedFlag) {
                             try {
                                 JSONArray ja = new JSONArray(joinedCourseResponse);
+                                //int len = Math.min(ja.length(), 8);
 
                                 for (int i = 0; i < ja.length(); i++) {
                                     JSONObject jo = ja.getJSONObject(i);
-                                    JSONObject joCourse = jo.getJSONObject("idCourse");
 
-                                    CourseItem item = new CourseItem();
-                                    item.setID(joCourse.getString("_id"));
-                                    item.setTitle(joCourse.getString("name"));
-                                    item.setUrl(joCourse.getString("image"));
-                                    item.setPercent(jo.getInt("percentCompleted"));
-                                    item.setCreateAt(jo.getString("created_at"));
+                                    if (!jo.isNull("idCourse")) {
+                                        JSONObject joCourse = jo.getJSONObject("idCourse");
+                                        CourseItem item = new CourseItem();
 
-                                    courseCreated.add(item);
-                                    personalCourseAdapter.notifyDataSetChanged();
+                                        item.setID(joCourse.getString("_id"));
+                                        item.setTitle(joCourse.getString("name"));
+                                        item.setUrl(joCourse.getString("image"));
+                                        item.setPercent(jo.getInt("percentCompleted"));
+                                        item.setCreateAt(jo.getString("created_at"));
+
+                                        courseCreated.add(item);
+                                        personalCourseAdapter.notifyDataSetChanged();
+                                    }
                                 }
                             } catch (JSONException jx) {
                                 jx.printStackTrace();

@@ -1,5 +1,7 @@
 package Retrofit;
 
+import androidx.annotation.NonNull;
+
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -65,14 +67,26 @@ public interface IMyService {
     //FeatureFragment - Week 3
     @GET("category/get-all-category")
     Observable<String>  getAllCategory();
+
     @GET("course/get-all")
     Observable<String>  getAllCourse();
+
     @GET("course/get-free")
     Observable<String>  getFreeCourse();
+
     @GET("course/get-top")
     Observable<String>  getTopCourse();
 
+    @GET
+    Observable<String> getCourseByID(@Url String urlGet);
+
+    @GET()
+    Observable<String> getCategoryByID(@Url String urlGet);
+
     //Joined Course
+    @GET
+    Observable<String> checkJoinedCourse(@Url String urlGet);
+
     @GET
     Observable<String> getJoinedCourse(@Url String urlGet);
 
@@ -85,6 +99,9 @@ public interface IMyService {
     @GET
     Observable<String> getListComment(@Url String urlGet);
 
+    @POST("rate/create-rate")
+    Observable<String> postCommentRating(@Body RequestBody body);
+
     //Search
     @GET
     Observable<String> getSearchCourse(@Url String urlGet);
@@ -94,4 +111,16 @@ public interface IMyService {
 
     @POST("payment/pay")
     Observable<String> pay(@Body RequestBody body);
+
+    //Forgot Password Email
+    @POST("forgot-password")
+    @FormUrlEncoded
+    Observable<String> forgotPassword(@Field("email") String email);
+
+    //Reset Password
+    @POST("reset-password")
+    @FormUrlEncoded
+    Observable<String> resetPassword(@Field("email") String email,
+                                     @Field("password") String password,
+                                     @Field("token") String token);
 }

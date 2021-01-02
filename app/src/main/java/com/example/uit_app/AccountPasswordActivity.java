@@ -36,7 +36,7 @@ public class AccountPasswordActivity extends AppCompatActivity {
     UserAccount userAccount;
     EditText oldPass, newPass, newPassConfirm;
     String oldPassString, newPassString;
-    Button backBtn, saveBtn;
+    Button saveBtn;
     File file;
     boolean flag = false;
 
@@ -62,13 +62,6 @@ public class AccountPasswordActivity extends AppCompatActivity {
                     ChangePassword();
             }
         });
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void setUIReference() {
@@ -76,7 +69,6 @@ public class AccountPasswordActivity extends AppCompatActivity {
         newPass = findViewById(R.id.security_new_text);
         newPassConfirm = findViewById(R.id.security_confirm_text);
         saveBtn = findViewById(R.id.security_save_button);
-        backBtn = findViewById(R.id.security_back_button);
     }
 
     private boolean checkValidInput() {

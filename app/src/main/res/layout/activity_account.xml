@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:id="@+id/login_background"
     android:background="@drawable/login_screen"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:padding="@dimen/margin_base_x4"
+    android:clipToPadding="false"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/activity_account_ctn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/ctn_white_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:paddingVertical="15dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:elevation="4dp">
+        android:elevation="@dimen/elevation_fragment">
 
         <TextView
             android:id="@+id/aa_title"
@@ -45,7 +47,7 @@
             app:layout_constraintRight_toRightOf="@id/activity_account_ctn"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:paddingHorizontal="10dp">
+            android:padding="@dimen/margin_base_x2">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -61,7 +63,7 @@
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/edit_text_size"
+                    android:textSize="@dimen/text_medium"
                     android:textColor="@color/black"
                     android:drawableStart="@drawable/account_circle_24px"
                     android:drawablePadding="5dp" />
@@ -75,14 +77,15 @@
                 android:hint="@string/strgender"
                 app:layout_constraintTop_toBottomOf="@id/aa_name_layout"
                 app:layout_constraintLeft_toLeftOf="@id/edit_ctn"
-                app:layout_constraintRight_toRightOf="@id/edit_ctn">
+                app:layout_constraintRight_toRightOf="@id/edit_ctn"
+                android:layout_marginTop="@dimen/margin_base">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/edtNewPassword"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_size"
+                    android:textSize="@dimen/text_medium"
                     android:drawableStart="@drawable/accessibility_24px_outlined"
                     android:drawablePadding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -95,14 +98,15 @@
                 android:hint="@string/strdescript"
                 app:layout_constraintTop_toBottomOf="@id/aa_gender_layout"
                 app:layout_constraintLeft_toLeftOf="@id/edit_ctn"
-                app:layout_constraintRight_toRightOf="@id/edit_ctn">
+                app:layout_constraintRight_toRightOf="@id/edit_ctn"
+                android:layout_marginTop="@dimen/margin_base">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/edtNewPasswordConfirm"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_size"
+                    android:textSize="@dimen/text_medium"
                     android:drawableStart="@drawable/contact_mail_24px_outlined"
                     android:drawablePadding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +119,8 @@
                 android:hint="@string/strphone"
                 app:layout_constraintTop_toBottomOf="@id/aa_description_layout"
                 app:layout_constraintLeft_toLeftOf="@id/edit_ctn"
-                app:layout_constraintRight_toRightOf="@id/edit_ctn">
+                app:layout_constraintRight_toRightOf="@id/edit_ctn"
+                android:layout_marginTop="@dimen/margin_base">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -124,7 +129,7 @@
                     android:drawableStart="@drawable/perm_phone_msg_24px_outlined"
                     android:drawablePadding="5dp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_size" />
+                    android:textSize="@dimen/text_medium" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -135,7 +140,8 @@
                 android:hint="@string/straddress"
                 app:layout_constraintTop_toBottomOf="@id/aa_phone_layout"
                 app:layout_constraintLeft_toLeftOf="@id/edit_ctn"
-                app:layout_constraintRight_toRightOf="@id/edit_ctn">
+                app:layout_constraintRight_toRightOf="@id/edit_ctn"
+                android:layout_marginTop="@dimen/margin_base">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -143,7 +149,8 @@
                     android:id="@+id/aa_address_text"
                     android:drawableStart="@drawable/store_24px_outlined"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_medium"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -151,7 +158,7 @@
         <Button
             android:id="@+id/btnSavePassword"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:background="@drawable/login_button"
             android:clickable="true"
             android:focusable="true"
@@ -163,18 +170,6 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
             android:elevation="4dp" />
-
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:background="@drawable/ctn_white_background_2"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:gravity="center"
-            android:text="@string/back" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

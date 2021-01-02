@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="@drawable/ctn_white_background_2"
-    android:elevation="@dimen/elevation_fragment"
+    android:elevation="@dimen/elevation_item"
     app:cardCornerRadius="@dimen/margin_base"
     android:layout_marginVertical="@dimen/margin_base_x2"
     android:clipToPadding="false">
