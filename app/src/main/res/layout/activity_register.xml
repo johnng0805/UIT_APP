@@ -6,18 +6,19 @@
     android:layout_width="fill_parent"
     android:id="@+id/login_background"
     android:background="@drawable/login_screen"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_logo"
-        android:layout_width="252dp"
-        android:layout_height="67dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/register_ctn">
+        android:layout_marginVertical="@dimen/margin_base_x2">
 
         <ImageView
             android:id="@+id/uit_logo"
@@ -29,7 +30,8 @@
             app:layout_constraintLeft_toLeftOf="@+id/login_logo"
             app:layout_constraintTop_toTopOf="@+id/login_logo"
             app:layout_constraintBottom_toBottomOf="@+id/login_logo"
-            android:contentDescription="@string/logo" />
+            android:contentDescription="@string/logo"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"/>
 
         <ImageView
             android:id="@+id/uit_logo_text"
@@ -48,19 +50,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/register_ctn"
         android:layout_width="match_parent"
-        android:layout_height="566dp"
+        android:layout_height="match_parent"
         android:background="@drawable/ctn_register_background"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@id/login_logo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginTop="@dimen/margin_base_x2"
+        android:padding="@dimen/margin_base_x4"
+        android:clipToPadding="false">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/htLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:hint="@string/strname"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toTopOf="@+id/register_ctn"
@@ -69,95 +73,99 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtActToken"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:drawableEnd="@drawable/account_circle_24px"
                 android:padding="10dp"
+                android:textSize="@dimen/text_medium"
                 android:textColor="@color/black"
+                android:inputType="text"
                 app:layout_constraintTop_toTopOf="@+id/register_ctn" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/phoneLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/strphone"
-            android:orientation="vertical"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/htLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
+            app:layout_constraintRight_toRightOf="@id/register_ctn"
+            android:layout_marginTop="@dimen/margin_base">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/PhoneText"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:drawableEnd="@drawable/perm_phone_msg_24px_outlined"
                 android:padding="10dp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:inputType="phone"
                 app:layout_constraintTop_toTopOf="@+id/phoneLayout" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/descriptLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/strdescript"
-            android:orientation="vertical"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/phoneLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
+            app:layout_constraintRight_toRightOf="@id/register_ctn"
+            android:layout_marginTop="@dimen/margin_base">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/DescriptText"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:drawableEnd="@drawable/message_24px_outlined"
                 android:padding="10dp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:inputType="text"
                 app:layout_constraintTop_toTopOf="@+id/descriptLayout" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/genderLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/strgender"
-            android:orientation="vertical"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/descriptLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
+            app:layout_constraintRight_toRightOf="@id/register_ctn"
+            android:layout_marginTop="@dimen/margin_base">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/GenderText"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:drawableEnd="@drawable/accessibility_24px_outlined"
                 android:padding="10dp"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="@+id/descriptLayout" />
+                android:textSize="@dimen/text_medium"
+                android:inputType="text"
+                app:layout_constraintTop_toTopOf="@+id/descriptLayout"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/addressLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/straddress"
-            android:orientation="vertical"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/genderLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
+            app:layout_constraintRight_toRightOf="@id/register_ctn"
+            android:layout_marginTop="@dimen/margin_base">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/AddressText"
@@ -167,19 +175,21 @@
                 android:drawableEnd="@drawable/store_24px_outlined"
                 android:padding="10dp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:inputType="text"
                 app:layout_constraintTop_toTopOf="@+id/addressLayout" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/strmail"
-            android:orientation="vertical"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/addressLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
+            app:layout_constraintRight_toRightOf="@id/register_ctn"
+            android:layout_marginTop="@dimen/margin_base">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/EmailText"
@@ -189,19 +199,21 @@
                 android:drawableEnd="@drawable/contact_mail_24px_outlined"
                 android:padding="10dp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:inputType="textEmailAddress"
                 app:layout_constraintTop_toTopOf="@+id/emailLayout" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/strpass"
-            android:orientation="vertical"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/emailLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
+            app:layout_constraintRight_toRightOf="@id/register_ctn"
+            android:layout_marginTop="@dimen/margin_base">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/PassText"
@@ -211,19 +223,21 @@
                 android:drawableEnd="@drawable/visibility_24px_outlined"
                 android:padding="10dp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:inputType="textPassword"
                 app:layout_constraintTop_toTopOf="@+id/passLayout" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/cfpLayout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/strcfpass"
-            android:orientation="vertical"
             android:textColorHint="@color/gray"
             app:layout_constraintTop_toBottomOf="@+id/passLayout"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
-            app:layout_constraintRight_toRightOf="@id/register_ctn">
+            app:layout_constraintRight_toRightOf="@id/register_ctn"
+            android:layout_marginTop="@dimen/margin_base">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/CfpText"
@@ -233,6 +247,8 @@
                 android:drawableEnd="@drawable/visibility_24px_outlined"
                 android:padding="10dp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:inputType="textPassword"
                 app:layout_constraintTop_toTopOf="@+id/cfpLayout" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -246,10 +262,10 @@
             android:text="@string/LoginBacktext"
             android:textColor="@color/gray"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/forgot_password_Text"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cfpLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/cfpLayout"
+            android:layout_marginTop="@dimen/margin_base_x4"/>
 
         <TextView
             android:id="@+id/forgot_password_Text"
@@ -261,23 +277,23 @@
             android:text="@string/forgot_password_text"
             android:textColor="@color/gray"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnConfirm"
             app:layout_constraintTop_toBottomOf="@+id/LoginBackText"
             app:layout_constraintLeft_toLeftOf="@id/register_ctn"
             app:layout_constraintRight_toRightOf="@id/register_ctn"
-            tools:layout_editor_absoluteY="501dp" />
+            android:layout_marginTop="@dimen/margin_base"/>
 
         <Button
             android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@drawable/register_button"
+            android:background="@drawable/login_button"
             android:text="@string/register_text"
             android:textColor="@color/colorBtnText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:clickable="true"
-            android:focusable="true"/>
+            android:focusable="true"
+            android:elevation="@dimen/elevation_fragment"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

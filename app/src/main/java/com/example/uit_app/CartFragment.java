@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,8 +75,12 @@ public class CartFragment extends Fragment {
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PayActivity.class);
-                startActivityForResult(intent, 1111);
+                if (cartItemAdapter.getItemCount() != 0) {
+                    Intent intent = new Intent(getContext(), PayActivity.class);
+                    startActivityForResult(intent, 1111);
+                } else {
+                    Toast.makeText(getContext(), "There are no courses to pay!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -101,6 +106,9 @@ public class CartFragment extends Fragment {
     private void loadCourseInCart() {
         SharedPreferences sharedPreferences;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (sharedPreferences.getBoolean("diffUser", false)) {
+            return;
+        }
         JSONArray cartArray;
         try {
             cartArray = new JSONArray(sharedPreferences.getString("cartArray", ""));

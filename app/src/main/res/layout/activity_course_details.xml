@@ -65,7 +65,10 @@
             app:layout_constraintBottom_toTopOf="@id/btn_ctn"
             app:layout_constrainedHeight="true"
             android:paddingHorizontal="@dimen/margin_base_x4"
-            android:layout_marginVertical="@dimen/margin_base_x2">
+            android:paddingVertical="@dimen/margin_base"
+            android:layout_marginVertical="@dimen/margin_base"
+            android:fillViewport="true"
+            android:clipToPadding="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -226,13 +229,80 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_marginTop="@dimen/margin_base_x4"/>
 
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rating_star"
+                    android:progressTint="@color/colorAccent"
+                    app:layout_constraintTop_toBottomOf="@id/user_rating"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/comment_box"
+                    android:background="@drawable/ctn_white_background_2"
+                    android:elevation="@dimen/margin_base"
+                    app:layout_constraintTop_toBottomOf="@id/rating_star"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_margin="@dimen/margin_base_x2"
+                    android:padding="@dimen/margin_base_x2"
+                    android:clipToPadding="false">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/user_avatar"
+                        android:src="@drawable/avatar"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/write_comment_title"
+                        android:text="@string/write_comment_title"
+                        android:textColor="@color/colorButton"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_medium"
+                        app:layout_constraintTop_toTopOf="@id/user_avatar"
+                        app:layout_constraintLeft_toRightOf="@id/user_avatar"
+                        android:layout_marginStart="@dimen/margin_base_x3"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/user_comment"
+                        android:background="@drawable/comment_box"
+                        app:layout_constraintTop_toBottomOf="@id/write_comment_title"
+                        app:layout_constraintLeft_toLeftOf="@id/write_comment_title"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constrainedHeight="true"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:hint="@string/write_comment_title"
+                        android:padding="@dimen/margin_base_x2"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/black"
+                        android:gravity="top"
+                        android:autofillHints=""
+                        android:inputType="textMultiLine"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/user_rating_view"
-                    app:layout_constraintTop_toBottomOf="@id/user_rating"
+                    app:layout_constraintTop_toBottomOf="@id/comment_box"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="@dimen/margin_base_x2"
                     android:scrollbars="horizontal"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

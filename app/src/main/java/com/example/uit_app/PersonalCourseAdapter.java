@@ -32,11 +32,10 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView courseImg;
-        public TextView courseName, coursePrice, coursePercent;
+        public TextView courseName, coursePercent;
         public MyViewHolder(View view) {
             super(view);
             courseName = (TextView) view.findViewById(R.id.item_created_course_name);
-            coursePrice = (TextView) view.findViewById(R.id.item_created_course_price);
             coursePercent = (TextView) view.findViewById(R.id.item_created_percent);
             courseImg = (ImageView) view.findViewById(R.id.item_created_course_img);
         }
@@ -60,7 +59,6 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
         CourseItem item = courseItems.get(position);
 
         TextView courseName = holder.courseName;
-        TextView coursePrice = holder.coursePrice;
         TextView coursePercent = holder.coursePercent;
         ImageView courseImg = holder.courseImg;
 
@@ -70,12 +68,6 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
         NumberFormat formatPercent = new DecimalFormat("#%");
 
         coursePercent.setText(formatPercent.format(item.getPercent()));
-
-        if (item.getPrice() == 0) {
-            coursePrice.setText(R.string.free);
-        } else {
-            coursePrice.setText(formatPrice.format(item.getPrice()));
-        }
 
         Picasso.get().load(url+item.getUrl())
                 .placeholder(R.drawable.devices)

@@ -7,11 +7,12 @@
     android:layout_width="fill_parent"
     android:id="@+id/login_background"
     android:background="@drawable/login_screen"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="220dp"
-        android:layout_height="227dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/login_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/login_ctn"
@@ -41,17 +42,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:id="@+id/login_ctn"
         android:background="@drawable/ctn_login_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constrainedHeight="true"
+        android:padding="@dimen/margin_base_x4"
+        android:clipToPadding="false">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/text_name_input"
-            android:layout_marginTop="20dp"
             app:layout_constraintTop_toTopOf="@id/login_ctn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
@@ -73,6 +76,7 @@
             app:layout_constraintTop_toBottomOf="@id/text_name_input"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/margin_base"
             android:hint="@string/login_password_hint">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -80,7 +84,8 @@
                 android:layout_height="match_parent"
                 android:id="@+id/text_password_edit"
                 android:inputType="textPassword"
-                android:autoSizeTextType="uniform" />
+                android:autoSizeTextType="uniform"
+                android:imeOptions="actionGo"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +118,7 @@
             android:clickable="true" />
 
         <Button
-            android:layout_width="80dp"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:id="@+id/login_btn"
             android:layout_marginTop="15dp"
@@ -124,7 +129,7 @@
             app:layout_constraintTop_toBottomOf="@id/forgot_password_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:elevation="4dp" />
+            android:elevation="@dimen/elevation_fragment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

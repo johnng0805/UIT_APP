@@ -35,8 +35,8 @@ public class ActiveAccountActivity extends AppCompatActivity {
     CompositeDisposable compositeDisposable =new CompositeDisposable();
     IMyService iMyService;
     AlertDialog alertDialog;
-
-
+    boolean activated = false;
+    boolean valid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class ActiveAccountActivity extends AppCompatActivity {
         iMyService = retrofitClient.create(IMyService.class);
         Mail = userAccount.getMail();
         //Toast.makeText(this, mail, Toast.LENGTH_SHORT).show();
-        Toast.makeText(ActiveAccountActivity.this, "Mã kích hoạt đã được gửi đến mail của bạn", Toast.LENGTH_LONG).show();
+        Toast.makeText(ActiveAccountActivity.this, "Authenticate token has been sent to your email", Toast.LENGTH_LONG).show();
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class ActiveAccountActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(@NonNull String s) {
-
+                        activated = true;
                     }
 
                     @Override
@@ -90,7 +90,7 @@ public class ActiveAccountActivity extends AppCompatActivity {
 
                         //JSONObject jObjError = new JSONObject(e.)
 
-                        Toast.makeText(ActiveAccountActivity.this, "Mã kích hoạt không đúng", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActiveAccountActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -103,20 +103,25 @@ public class ActiveAccountActivity extends AppCompatActivity {
 
                                     }
                                 }, 500);
-                        Toast.makeText(ActiveAccountActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
 
-                        Intent intent=new Intent(ActiveAccountActivity.this,LoginActivity.class);
-                        intent.putExtra("userAcc",userAccount);
-                        startActivity(intent);
+                        if (activated) {
+                            Toast.makeText(ActiveAccountActivity.this, "Register Successful", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(ActiveAccountActivity.this, LoginActivity.class);
+                            intent.putExtra("userAcc", userAccount);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(ActiveAccountActivity.this, "Register Unsuccessful", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }
 
     private boolean CheckValidInput(){
-        boolean valid=false;
         ActiveCode = textActToken.getText().toString();
-        if (ActiveCode.isEmpty()) {valid=false;
-            Toast.makeText(this, "Nhập mã kích hoạt", Toast.LENGTH_SHORT).show();}
+        if (ActiveCode.isEmpty()) {
+            valid=false;
+            Toast.makeText(this, "Please enter token number", Toast.LENGTH_SHORT).show();}
         else valid=true;
         return valid;
     }

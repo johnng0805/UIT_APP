@@ -1,11 +1,15 @@
 package com.example.uit_app;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,8 +17,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 import Model.UserAccount;
 import Retrofit.IMyService;
@@ -72,6 +79,31 @@ public class LoginActivity extends AppCompatActivity {
                     Login();
             }
         });
+
+        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO) {
+                    passwordEditText.clearFocus();
+                    InputMethodManager inputMethodManager = (InputMethodManager) Objects.requireNonNull(getApplicationContext()
+                            .getSystemService(Context.INPUT_METHOD_SERVICE));
+                    inputMethodManager.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
+                    if (CheckValidInput()) {
+                        Login();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        forgotpasswordTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassWordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void Login() {
@@ -90,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onNext(Response<String> stringResponse) {
+                        public void onNext(@NotNull Response<String> stringResponse) {
                             if (stringResponse.isSuccessful()) {
                                 if (stringResponse.body().toString().contains("name")) {
                                     String responseString = stringResponse.body().toString();
@@ -110,6 +142,13 @@ public class LoginActivity extends AppCompatActivity {
 
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+                                        if (!sharedPreferences.getString("email", "").equals(userAccount.getMail())) {
+                                            editor.putBoolean("diffUser", true);
+                                        } else {
+                                            editor.putBoolean("diffUser", false);
+                                        }
+
+                                        editor.putBoolean("diffUser", true);
                                         editor.putString("name", userAccount.getHoten());
                                         editor.putString("phone", userAccount.getSdt());
                                         editor.putString("image", userAccount.getAva());
