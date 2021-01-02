@@ -115,9 +115,16 @@
     <string name="email_hint">abc@123.com</string>
     <string name="send">Send</string>
 
-    <!---Reset Password Activity-->
+    <!--Reset Password Activity-->
     <string name="reset_pass_token">Token:</string>
     <string name="reset_pass_new">New Password:</string>
     <string name="reset_pass_update">Update</string>
     <string name="reset_pass_title">Reset Password</string>
+
+    <!--Learning Courses-->
+    <string name="LearnCourses">Course 1 - Lesson 1</string>
+    <string name="Lesson">Lessons</string>
+    <string name="Documents">Documents</string>
+    <string name="Comments">Comments</string>
+    <string name="Quiz">Quiz</string>
 </resources>
