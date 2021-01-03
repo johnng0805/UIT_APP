@@ -61,8 +61,8 @@ public class LoginActivity extends AppCompatActivity {
 
         setUIReference();
 
-        emailEditText.setText("luongkhoadang13012000@gmail.com");
-        passwordEditText.setText("Abcd1234");
+        //emailEditText.setText("luongkhoadang13012000@gmail.com");
+        //passwordEditText.setText("Abcd1234");
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
