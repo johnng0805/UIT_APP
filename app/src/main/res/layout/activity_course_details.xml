@@ -208,13 +208,14 @@
                     android:layout_marginTop="@dimen/margin_base_x4"/>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/related_course_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/related_course_view"
-                    app:layout_constraintTop_toBottomOf="@id/related_course"
+                    android:background="#FFFFFF"
+                    android:scrollbars="horizontal"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    android:scrollbars="horizontal"/>
+                    app:layout_constraintTop_toBottomOf="@id/related_course" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -327,7 +328,6 @@
                 android:text="@string/rate_btn"
                 android:textColor="@color/colorBtnText"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/btnjoin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:elevation="@dimen/elevation_fragment"
@@ -348,6 +348,20 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:elevation="@dimen/elevation_fragment"
                 android:layout_marginHorizontal="@dimen/margin_base"/>
+
+            <Button
+                android:id="@+id/btnadd"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="@dimen/margin_base"
+                android:background="@drawable/login_button"
+                android:clickable="true"
+                android:drawableBottom="@drawable/add_shopping_cart_24px"
+                android:elevation="@dimen/elevation_fragment"
+                android:focusable="true"
+                android:textColor="@color/colorBtnText"
+                app:layout_constraintLeft_toRightOf="@id/btnrate"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
