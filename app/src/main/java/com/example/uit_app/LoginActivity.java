@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,9 +61,14 @@ public class LoginActivity extends AppCompatActivity {
 
         setUIReference();
 
+        emailEditText.setText("luongkhoadang13012000@gmail.com");
+        passwordEditText.setText("Abcd1234");
+
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
         alertDialog = new SpotsDialog.Builder().setContext(this).build();
+
+
 
         registerTV.setOnClickListener(new View.OnClickListener() {
             @Override

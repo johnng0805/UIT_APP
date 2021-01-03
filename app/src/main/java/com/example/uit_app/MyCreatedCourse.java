@@ -1,7 +1,6 @@
 package com.example.uit_app;
 
-
-import androidx.fragment.app.Fragment;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,14 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
+import com.example.uit_app.R;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -40,9 +39,18 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import Retrofit.*;
 
-public class CourseFragment extends Fragment {
+//import android.support.v4.app.*;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentActivity;
+//import android.support.v4.app.FragmentTransaction;
+//import android.support.v4.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-    TextView title, createcourse;
+
+public class MyCreatedCourse extends FragmentActivity {
+
+    TextView title, txtCourse;
 
     RecyclerView courseView;
     ArrayList<CourseItem> courseCreated = new ArrayList<CourseItem>();
@@ -61,70 +69,107 @@ public class CourseFragment extends Fragment {
     String joinedCourseResponse;
     boolean joinedFlag = false;
 
-    private static String url = "http://149.28.24.98:9000/join/get-courses-joined-by-user/";
+    private static String url = "http://149.28.24.98:9000/course/getby-iduser/";
 
-    public CourseFragment() {}
+    public MyCreatedCourse() {
+    }
 
-    public CourseFragment(UserAccount userAccount) {
+    public MyCreatedCourse(UserAccount userAccount) {
         this.userAccount = userAccount;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.activity_my_created_course);
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_course, container, false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-        title = rootView.findViewById(R.id.course_fragment_title);
-        courseView = rootView.findViewById(R.id.course_fragment_view);
-//        createButton = rootView.findViewById(R.id.createe_course_btn);
+        title = findViewById(R.id.course_fragment_title);
+        courseView = findViewById(R.id.created_course_list);
 
         personalCourseAdapter = new PersonalCourseAdapter(courseCreated);
         courseView.setAdapter(personalCourseAdapter);
-        courseView.setLayoutManager(new LinearLayoutManager(getContext(),
+
+
+
+        courseView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false));
 
-//        createButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), CreateCourse.class);
-//                startActivity(intent);
-//            }
-//        });
-
-        createcourse = rootView.findViewById(R.id.course_text);
-        createcourse.setOnClickListener(new View.OnClickListener() {
+        createButton = findViewById(R.id.created_course_btn);
+        createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MyCreatedCourse.class);
+                Intent intent = new Intent(MyCreatedCourse.this, CreateCourse.class);
                 startActivity(intent);
-
-//                Fragment fragment = new MyCreatedCourse();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.fragment_container, fragment).commit();
             }
         });
 
-        loadJoinedCourse();
+        loadCreatedCourse();
 
-        return rootView;
-    }
 
-    private void loadJoinedCourse() {
+
+
+        //Chinh sua khi la Activity
+//       setContentView(R.layout.activity_created_course);
+//        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//
+//        title = findViewById(R.id.course_fragment_title);
+//        courseView = findViewById(R.id.course_fragment_view);
+//
+//        createButton = findViewById(R.id.created_course_btn);
+//        createButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MyCreatedCourse.this, CreateCourse.class);
+//                startActivity(intent);
+//            }
+//        });
+        //Chinh sua khi la Activity
+   }
+
+
+
+
+        //Chinh sua khi la Fragment
+//        @Nullable
+//        @Override
+//        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//            final View rootView = inflater.inflate(R.layout.activity_my_created_course, container, false);
+//
+//            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//
+//            title = rootView.findViewById(R.id.course_fragment_title);
+//            courseView = rootView.findViewById(R.id.course_fragment_view);
+//            createButton = rootView.findViewById(R.id.createe_course_btn);
+//
+//            personalCourseAdapter = new PersonalCourseAdapter(courseCreated);
+//            courseView.setAdapter(personalCourseAdapter);
+//            courseView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+//                    LinearLayoutManager.VERTICAL, false));
+//
+//            createButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(MyCreatedCourse.this, CreateCourse.class);
+//                    startActivity(intent);
+//                }
+//            });
+//
+//
+//
+//            loadJoinedCourse();
+//            return rootView;
+//
+//    }
+
+    private void loadCreatedCourse(){
 
         retrofit = RetrofitClient.getInstance();
         iMyService = retrofit.create(IMyService.class);
-        alertDialog = new SpotsDialog.Builder().setContext(getContext()).build();
+        alertDialog = new SpotsDialog.Builder().setContext(getApplicationContext()).build();
 
-        alertDialog.show();
-        iMyService.getJoinedCourse(url+sharedPreferences.getString("id", ""))
+        iMyService.getCreatedCourse(url+sharedPreferences.getString("id", ""))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
@@ -147,7 +192,7 @@ public class CourseFragment extends Fragment {
                                 alertDialog.dismiss();
                             }
                         }, 500);
-                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyCreatedCourse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -165,17 +210,16 @@ public class CourseFragment extends Fragment {
                                 //int len = Math.min(ja.length(), 8);
 
                                 for (int i = 0; i < ja.length(); i++) {
-                                    JSONObject jo = ja.getJSONObject(i);
+                                    JSONObject joCourse = ja.getJSONObject(i);
 
-                                    if (!jo.isNull("idCourse")) {
-                                        JSONObject joCourse = jo.getJSONObject("idCourse");
+                                    {
+
                                         CourseItem item = new CourseItem();
 
                                         item.setID(joCourse.getString("_id"));
                                         item.setTitle(joCourse.getString("name"));
                                         item.setUrl(joCourse.getString("image"));
-                                        item.setPercent(jo.getInt("percentCompleted"));
-                                        item.setCreateAt(jo.getString("created_at"));
+                                        item.setCreateAt(joCourse.getString("created_at"));
 
                                         courseCreated.add(item);
                                         personalCourseAdapter.notifyDataSetChanged();
@@ -186,9 +230,10 @@ public class CourseFragment extends Fragment {
                                 jx.printStackTrace();
                             }
                         } else {
-                            Toast.makeText(getContext(), "No data.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyCreatedCourse.this, "No data.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 }
+

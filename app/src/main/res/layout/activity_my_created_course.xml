@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="My course"
+            android:text="@string/course_fragment_title"
             android:textColor="@color/colorButton"
             android:textSize="@dimen/text_large"
             android:textStyle="bold"
@@ -36,27 +36,32 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/created_course_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@drawable/login_button"
+            android:elevation="@dimen/elevation_fragment"
+            android:paddingHorizontal="@dimen/margin_base_x2"
+            android:text="@string/course_fragment_button"
+            android:textColor="@color/colorBtnText"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/course_fragment_view"
+            android:id="@+id/created_course_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginVertical="@dimen/margin_base_x4"
             android:clipToPadding="false"
             android:paddingHorizontal="@dimen/margin_base"
             app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/created_course_btn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/course_fragment_title" />
-
-        <TextView
-            android:id="@+id/course_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create your course?"
-            android:textColor="@color/colorText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/course_fragment_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

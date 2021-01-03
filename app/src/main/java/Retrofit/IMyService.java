@@ -123,4 +123,20 @@ public interface IMyService {
     Observable<String> resetPassword(@Field("email") String email,
                                      @Field("password") String password,
                                      @Field("token") String token);
+
+    @Multipart
+    @POST("/course/create")
+    Observable<Response<String>> createCourse(@Header("auth-token") String authToken,
+                                              @Part("name") String name,
+                                              @Part("goal") String goal,
+                                              @Part("category") String category,
+                                              @Part("description") String description,
+                                              @Part("price") String price,
+                                              @Part("discount") String discount,
+                                              @Part MultipartBody.Part file);
+
+    @GET
+    Observable<String> getCreatedCourse(@Url String urlGet);
+
+
 }

@@ -120,4 +120,16 @@
     <string name="reset_pass_new">New Password:</string>
     <string name="reset_pass_update">Update</string>
     <string name="reset_pass_title">Reset Password</string>
+
+    <string-array name="categories">
+        <item>Toán Tin</item>
+        <item>Công nghệ thông tin</item>
+        <item>Ngoại ngữ</item>
+    </string-array>
+
+    <string-array name="course_choice_fragment">
+        <item>Create your course</item>
+        <item>Joined course</item>
+    </string-array>
+
 </resources>
