@@ -1,6 +1,7 @@
 package com.example.uit_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
     private Context context;
     private static String url = "http://149.28.24.98:9000/upload/course_image/";
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView courseImg;
         public TextView courseName, coursePercent;
         public MyViewHolder(View view) {
@@ -38,6 +39,15 @@ public class PersonalCourseAdapter extends RecyclerView.Adapter<PersonalCourseAd
             courseName = (TextView) view.findViewById(R.id.item_created_course_name);
             coursePercent = (TextView) view.findViewById(R.id.item_created_percent);
             courseImg = (ImageView) view.findViewById(R.id.item_created_course_img);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LearnCourseActivity.class);
+                    intent.putExtra("courseItem", courseItems.get(getAdapterPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

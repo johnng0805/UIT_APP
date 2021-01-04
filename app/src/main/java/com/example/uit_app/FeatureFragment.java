@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.uit_app.CategoryItemAdapter;
+import com.example.uit_app.CourseItemAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

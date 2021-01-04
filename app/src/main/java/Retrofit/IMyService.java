@@ -138,5 +138,11 @@ public interface IMyService {
     @GET
     Observable<String> getCreatedCourse(@Url String urlGet);
 
+    //Learn Course
+    @GET
+    Observable<String> getLesson(@Header("auth-token") String authToken,
+                                 @Url String urlGet);
 
+    @GET
+    Observable<String> getProgress(@Url String urlGet);
 }

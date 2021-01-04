@@ -121,10 +121,27 @@
     <string name="reset_pass_update">Update</string>
     <string name="reset_pass_title">Reset Password</string>
 
+    <!--Create Course-->
+    <string-array name="categories">
+        <item>Toán Tin</item>
+        <item>Công nghệ thông tin</item>
+        <item>Ngoại ngữ</item>
+    </string-array>
+
+    <string-array name="course_choice_fragment">
+        <item>Create your course</item>
+        <item>Joined course</item>
+    </string-array>
+
     <!--Learning Courses-->
     <string name="LearnCourses">Course 1 - Lesson 1</string>
     <string name="Lesson">Lessons</string>
     <string name="Documents">Documents</string>
     <string name="Comments">Comments</string>
     <string name="Quiz">Quiz</string>
+
+    <!--Item Lesson-->
+    <string name="ItemNumber">1</string>
+    <string name="ItemLesson">Lesson</string>
+    <string name="percent">%</string>
 </resources>
