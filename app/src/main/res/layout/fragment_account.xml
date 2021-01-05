@@ -190,6 +190,7 @@
             android:text="@string/logout"
             android:textColor="@color/colorBtnText"
             android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/button_ctn"
             app:layout_constraintBottom_toBottomOf="@id/constraintLayout_ctn"
             app:layout_constraintLeft_toLeftOf="@id/constraintLayout_ctn"
             app:layout_constraintRight_toRightOf="@id/constraintLayout_ctn" />

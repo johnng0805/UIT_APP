@@ -134,7 +134,7 @@
     </string-array>
 
     <!--Learning Courses-->
-    <string name="LearnCourses">Course 1 - Lesson 1</string>
+    <string name="LearnCourses">Select lesson to begin</string>
     <string name="Lesson">Lessons</string>
     <string name="Documents">Documents</string>
     <string name="Comments">Comments</string>

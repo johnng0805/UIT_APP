@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.stripe.android.model.Card;
 
 import java.util.List;
 
@@ -22,11 +25,13 @@ public class LessonItemAdapter extends RecyclerView.Adapter<LessonItemAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView lessonOrder, lessonName;
+        public CardView lessonBackground;
 
         public MyViewHolder(View view) {
             super(view);
             lessonOrder = view.findViewById(R.id.item_lesson_number);
             lessonName = view.findViewById(R.id.item_lesson_name);
+            lessonBackground = view.findViewById(R.id.item_lesson_background);
         }
     }
 
@@ -51,6 +56,7 @@ public class LessonItemAdapter extends RecyclerView.Adapter<LessonItemAdapter.My
 
         TextView lessonOrder = holder.lessonOrder;
         TextView lessonName = holder.lessonName;
+        CardView lessonBackground = holder.lessonBackground;
 
         lessonOrder.setText(String.valueOf(lessonItem.getOrder()));
         lessonName.setText(lessonItem.getTitle());
@@ -58,8 +64,10 @@ public class LessonItemAdapter extends RecyclerView.Adapter<LessonItemAdapter.My
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClick.onItemClick(position);
+                onItemClick.onItemClick("lesson", position);
+                //lessonBackground.setBackgroundColor(context.getColor(R.color.colorBackgroundTop));
             }
+
         });
     }
 

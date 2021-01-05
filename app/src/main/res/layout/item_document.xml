@@ -7,6 +7,7 @@
     android:background="@color/white"
     app:cardCornerRadius="@dimen/margin_base"
     android:elevation="@dimen/elevation_fragment"
+    android:layout_margin="@dimen/margin_base"
     android:clipToPadding="false">
 
     <TextView
@@ -15,7 +16,7 @@
         android:id="@+id/item_document_title"
         android:text="@string/ItemLesson"
         android:textColor="@color/colorButton"
-        android:textSize="@dimen/text_small"
+        android:textSize="@dimen/text_14"
         android:gravity="center"
         android:layout_gravity="center"
         android:paddingVertical="@dimen/margin_base_x3"

@@ -21,7 +21,7 @@
         android:textSize="@dimen/text_medium"
         android:textColor="@color/colorBtnText"
         android:text="@string/LearnCourses"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:background="@color/colorButton"/>
 
     <ProgressBar
@@ -125,7 +125,48 @@
         app:layout_constraintTop_toBottomOf="@id/tablayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/comment_layout"
         app:layout_constrainedHeight="true"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/comment_layout"
+        android:background="@drawable/ctn_white_background_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="@dimen/margin_base_x2">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment_box"
+            android:textSize="@dimen/text_14"
+            android:textColor="@color/black"
+            android:hint="@string/write_comment_title"
+            android:background="@drawable/comment_box"
+            android:padding="@dimen/margin_base_x2"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/comment_sendBtn"
+            android:layout_marginEnd="@dimen/margin_base_x2"
+            android:inputType="textMultiLine"
+            android:autofillHints="" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:id="@+id/comment_sendBtn"
+            android:background="@drawable/login_button"
+            android:text="@string/send"
+            android:textSize="@dimen/text_12"
+            android:textColor="@color/colorBtnText"
+            app:layout_constraintTop_toTopOf="@id/comment_box"
+            app:layout_constraintBottom_toBottomOf="@id/comment_box"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

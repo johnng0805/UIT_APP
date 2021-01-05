@@ -7,6 +7,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -148,4 +149,13 @@ public interface IMyService {
 
     @GET
     Observable<String> getParentComment(@Url String urlGet);
+
+    @DELETE
+    Observable<String>  deleteCourse(@Url String urlGet, @Header("auth-token") String authToken);
+
+    @POST("comment/add-comment")
+    Observable<String> postCommentLesson(@Body RequestBody body);
+
+    @POST("join/update-progress-lesson-of-course/")
+    Observable<Response<String>> updateProgress(@Url String urlGet, @Body RequestBody body);
 }

@@ -5,9 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/margin_base"
-    android:background="@color/white"
+    android:id="@+id/item_lesson_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?android:selectableItemBackground"
+    android:foreground="?android:selectableItemBackground"
     android:elevation="@dimen/elevation_fragment"
-    android:layout_margin="@dimen/margin_base_x2">
+    android:layout_margin="@dimen/margin_base">
 
     <LinearLayout
         android:layout_width="match_parent"

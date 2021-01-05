@@ -1,5 +1,5 @@
 package Interface;
 
 public interface OnItemClick {
-    void onItemClick(int position);
+    void onItemClick(String type, int position);
 }

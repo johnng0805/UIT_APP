@@ -9,12 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.stripe.android.view.IconTextInputLayout;
+
 import java.util.ArrayList;
+
+import Interface.OnItemClick;
 
 public class DocumentItemAdapter extends RecyclerView.Adapter<DocumentItemAdapter.MyViewHolder> {
 
     private ArrayList<String> documentItems;
     private Context context;
+    private OnItemClick onItemClick;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView documentTitle;
@@ -24,8 +29,10 @@ public class DocumentItemAdapter extends RecyclerView.Adapter<DocumentItemAdapte
         }
     }
 
-    public DocumentItemAdapter(Context context, ArrayList<String> documentItems) {
+    public DocumentItemAdapter(Context context, ArrayList<String> documentItems, OnItemClick onItemClick) {
         this.documentItems = documentItems;
+        this.context = context;
+        this.onItemClick = onItemClick;
     }
 
     @NonNull
@@ -44,6 +51,13 @@ public class DocumentItemAdapter extends RecyclerView.Adapter<DocumentItemAdapte
 
         TextView documentTitle = holder.documentTitle;
         documentTitle.setText(documentItem);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.onItemClick("doc", position);
+            }
+        });
     }
 
     @Override
