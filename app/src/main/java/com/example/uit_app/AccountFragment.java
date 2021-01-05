@@ -41,7 +41,7 @@ public class AccountFragment extends Fragment {
     Button personalInfoBtn, securityBtn, avatarBtn, logoutBtn;
     TextView name, email;
     Boolean flag = false;
-    ImageView avatar;
+    ImageView avatar, Mic;
 
     String url = "http://149.28.24.98:9000/upload/user_image/";
 
@@ -69,6 +69,15 @@ public class AccountFragment extends Fragment {
         securityBtn = rootView.findViewById(R.id.security_btn);
         avatarBtn = rootView.findViewById(R.id.btnProfilePicture);
         logoutBtn = rootView.findViewById(R.id.logout_btn);
+        Mic = rootView.findViewById(R.id.Fragment_Mic);
+
+        Mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SpeechActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Picasso.get().load(url+userAccount.getAva()).placeholder(R.drawable.avatar)
                 .error(R.drawable.avatar)

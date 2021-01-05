@@ -54,7 +54,7 @@ public class MyCreatedCourse extends FragmentActivity {
 
     RecyclerView courseView;
     ArrayList<CourseItem> courseCreated = new ArrayList<CourseItem>();
-    PersonalCourseAdapter personalCourseAdapter;
+    CreatedCourseAdapter createdCourseAdapter;
 
     Button createButton;
     Spinner spinnerChoice;
@@ -88,8 +88,8 @@ public class MyCreatedCourse extends FragmentActivity {
         title = findViewById(R.id.course_fragment_title);
         courseView = findViewById(R.id.created_course_list);
 
-        personalCourseAdapter = new PersonalCourseAdapter(courseCreated);
-        courseView.setAdapter(personalCourseAdapter);
+        createdCourseAdapter = new CreatedCourseAdapter(courseCreated);
+        courseView.setAdapter(createdCourseAdapter);
 
 
 
@@ -222,7 +222,7 @@ public class MyCreatedCourse extends FragmentActivity {
                                         item.setCreateAt(joCourse.getString("created_at"));
 
                                         courseCreated.add(item);
-                                        personalCourseAdapter.notifyDataSetChanged();
+                                        createdCourseAdapter.notifyDataSetChanged();
                                     }
                                     joinedFlag = true;
                                 }
