@@ -330,6 +330,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/btnjoin"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 android:elevation="@dimen/elevation_fragment"
                 android:layout_marginHorizontal="@dimen/margin_base"/>
 
@@ -348,20 +349,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:elevation="@dimen/elevation_fragment"
                 android:layout_marginHorizontal="@dimen/margin_base"/>
-
-            <Button
-                android:id="@+id/btnadd"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginHorizontal="@dimen/margin_base"
-                android:background="@drawable/login_button"
-                android:clickable="true"
-                android:drawableBottom="@drawable/add_shopping_cart_24px"
-                android:elevation="@dimen/elevation_fragment"
-                android:focusable="true"
-                android:textColor="@color/colorBtnText"
-                app:layout_constraintLeft_toRightOf="@id/btnrate"
-                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

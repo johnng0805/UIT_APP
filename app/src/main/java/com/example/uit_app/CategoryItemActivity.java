@@ -55,6 +55,7 @@ public class CategoryItemActivity extends AppCompatActivity {
 
         //Get category
         categoryItem = (CategoryItem) getIntent().getSerializableExtra("categoryItem");
+        categoryTitle.setText(categoryItem.getName());
 
         loadCategoryElement();
     }
