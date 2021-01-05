@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateCourse"></activity>
-        <activity android:name=".MyCreatedCourse"></activity>
+        <activity android:name=".SpeechActivity"></activity>
+        <activity android:name=".CreateCourse" />
+        <activity android:name=".MyCreatedCourse" />
         <activity
             android:name=".ActiveAccountActivity"
             android:screenOrientation="portrait" />
