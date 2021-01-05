@@ -18,7 +18,12 @@ import android.widget.VideoView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
+
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +33,10 @@ import java.util.ArrayList;
 
 import Interface.OnItemClick;
 import Model.CourseItem;
+import Model.LessonComment;
 import Model.LessonItem;
+import Model.SnapHelperOneByOne;
+import Model.UserAccount;
 import Retrofit.IMyService;
 import dmax.dialog.SpotsDialog;
 import io.reactivex.Observer;
@@ -50,11 +58,19 @@ public class LearnCourseActivity extends AppCompatActivity implements OnItemClic
 
     MediaController mediaController;
 
+    TabItem documents, comments;
+    TabLayout tabLayout;
+
+    LinearSnapHelper linearSnapHelper;
+
     VideoView courseVideo;
     RecyclerView lessonItemView, documentItemView;
     LessonItemAdapter lessonItemAdapter;
     DocumentItemAdapter documentItemAdapter;
     ArrayList<String> courseDocuments;
+
+    ArrayList<LessonComment> lessonComments;
+    LessonCommentAdapter lessonCommentAdapter;
 
     IMyService iMyService;
     Retrofit retrofit;
@@ -64,6 +80,7 @@ public class LearnCourseActivity extends AppCompatActivity implements OnItemClic
     String urlGetLesson = "http://149.28.24.98:9000/lesson/get-lesson-by-id-course/";
     String urlGetProgrress = "http://149.28.24.98:9000/join/get-progress-course-join-by-idUser-and-idCourse/";
     String urlGetVideo = "http://149.28.24.98:9000/upload/lesson/";
+    String urlGetParentComment = "http://149.28.24.98:9000/comment/get-parent-comment-by-lesson/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +106,9 @@ public class LearnCourseActivity extends AppCompatActivity implements OnItemClic
         documentItemView = findViewById(R.id.learning_items);
         courseProgress = findViewById(R.id.progress_bar);
         courseProgressNumber = findViewById(R.id.progressnumber);
+        documents = findViewById(R.id.documents);
+        comments = findViewById(R.id.comments);
+        tabLayout = findViewById(R.id.tablayout);
     }
 
     private void debugFunc(String s) {
@@ -138,7 +158,11 @@ public class LearnCourseActivity extends AppCompatActivity implements OnItemClic
                             lessonItemAdapter = new LessonItemAdapter(LearnCourseActivity.this, lessonItems, LearnCourseActivity.this);
                             lessonItemView.setAdapter(lessonItemAdapter);
                             lessonItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
-                                    LinearLayoutManager.VERTICAL, false));
+                                    LinearLayoutManager.HORIZONTAL, false));
+
+                            linearSnapHelper = new SnapHelperOneByOne();
+                            linearSnapHelper.attachToRecyclerView(lessonItemView);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(LearnCourseActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
@@ -205,15 +229,137 @@ public class LearnCourseActivity extends AppCompatActivity implements OnItemClic
                 });
     }
 
+    private void getParentComment(int position) {
+
+        iMyService.getParentComment(urlGetParentComment + courseItem.getID() + "/"
+                + lessonItems.get(position).getID() + "/"
+                + "8" + "/" + "0")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        //debugFunc(s);
+                        try {
+                            JSONArray ja = new JSONArray(s);
+
+                            for (int i = 0; i < ja.length(); i++) {
+                                JSONObject jo = ja.getJSONObject(i);
+                                JSONObject joUser = jo.getJSONObject("idUser");
+
+                                LessonComment lessonComment = new LessonComment();
+                                lessonComment.setID(jo.getString("_id"));
+                                lessonComment.setContent(jo.getString("content"));
+                                lessonComment.setCreatedAt(jo.getString("created_at"));
+                                lessonComment.setIdCourse(jo.getString("idCourse"));
+                                lessonComment.setIdLesson(jo.getString("idLesson"));
+                                lessonComment.setIdParent(jo.getString("idParent"));
+                                lessonComment.setImage(jo.getString("image"));
+                                lessonComment.setPageType(jo.getString("pageType"));
+
+                                UserAccount userAccount = new UserAccount();
+                                userAccount.setHoten(joUser.getString("name"));
+                                userAccount.setMail(joUser.getString("email"));
+                                userAccount.setAva(joUser.getString("image"));
+                                userAccount.setID(joUser.getString("_id"));
+
+                                lessonComment.setIdUser(userAccount);
+
+                                lessonComments.add(lessonComment);
+                            }
+
+                            lessonCommentAdapter = new LessonCommentAdapter(LearnCourseActivity.this, lessonComments);
+                        } catch (JSONException jx) {
+                            jx.printStackTrace();
+                            Toast.makeText(LearnCourseActivity.this, jx.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Toast.makeText(LearnCourseActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
     @Override
     public void onItemClick(int position) {
         courseDocuments = new ArrayList<String>();
         courseDocuments = lessonItems.get(position).getDocuments();
 
-        documentItemAdapter = new DocumentItemAdapter(LearnCourseActivity.this, courseDocuments);
-        documentItemView.setAdapter(documentItemAdapter);
-        documentItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
-                RecyclerView.VERTICAL, false));
+        switch (tabLayout.getSelectedTabPosition()) {
+            case 0:
+                documentItemAdapter = new DocumentItemAdapter(LearnCourseActivity.this,
+                        courseDocuments);
+                documentItemView.setAdapter(documentItemAdapter);
+                documentItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
+                        LinearLayoutManager.VERTICAL, false));
+                break;
+            case 1:
+                lessonComments = new ArrayList<LessonComment>();
+                getParentComment(position);
+                documentItemView.setAdapter(lessonCommentAdapter);
+                documentItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
+                        LinearLayoutManager.VERTICAL, false));
+                break;
+        }
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        documentItemAdapter = new DocumentItemAdapter(LearnCourseActivity.this,
+                                courseDocuments);
+                        documentItemView.setAdapter(documentItemAdapter);
+                        documentItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
+                                LinearLayoutManager.VERTICAL, false));
+                        break;
+                    case 1:
+                        lessonComments = new ArrayList<LessonComment>();
+                        getParentComment(position);
+                        documentItemView.setAdapter(lessonCommentAdapter);
+                        documentItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
+                                LinearLayoutManager.VERTICAL, false));
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        documentItemAdapter = new DocumentItemAdapter(LearnCourseActivity.this,
+                                courseDocuments);
+                        documentItemView.setAdapter(documentItemAdapter);
+                        documentItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
+                                LinearLayoutManager.VERTICAL, false));
+                        break;
+                    case 1:
+                        lessonComments = new ArrayList<LessonComment>();
+                        getParentComment(position);
+                        documentItemView.setAdapter(lessonCommentAdapter);
+                        documentItemView.setLayoutManager(new LinearLayoutManager(LearnCourseActivity.this,
+                                LinearLayoutManager.VERTICAL, false));
+                        break;
+                }
+            }
+        });
 
         Uri videoUrl = Uri.parse("http://149.28.24.98:9000/upload/lesson/" + lessonItems.get(position).getVideo());
         mediaController = new MediaController(LearnCourseActivity.this);

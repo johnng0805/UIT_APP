@@ -145,4 +145,7 @@ public interface IMyService {
 
     @GET
     Observable<String> getProgress(@Url String urlGet);
+
+    @GET
+    Observable<String> getParentComment(@Url String urlGet);
 }
