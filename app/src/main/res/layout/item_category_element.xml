@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="?android:selectableItemBackground"
+    android:foreground="?android:selectableItemBackground"
+    android:elevation="@dimen/elevation_fragment"
+    app:cardCornerRadius="@dimen/margin_base"
+    android:clipToPadding="false"
+    android:layout_marginTop="@dimen/margin_base_x2"
+    android:layout_marginHorizontal="@dimen/margin_base">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/item_category_img"
+            android:src="@drawable/devices"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/img_logo"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_base_x2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_category_name"
+                android:text="@string/course_name"
+                android:textColor="@color/colorButton"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                android:singleLine="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_category_price"
+                android:text="@string/course_price"
+                android:textStyle="italic"
+                android:textColor="@color/colorAccent"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

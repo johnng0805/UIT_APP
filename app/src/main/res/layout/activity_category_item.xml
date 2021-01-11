@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_screen"
+    android:padding="@dimen/margin_base_x4"
+    android:clipToPadding="false"
+    tools:context=".CategoryItemActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/category_item_ctn"
+        android:background="@drawable/ctn_white_background_2"
+        android:elevation="@dimen/elevation_fragment"
+        android:padding="@dimen/margin_base_x4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/category_item_title"
+            android:text="@string/category_title"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            android:textColor="@color/colorButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/category_item_view"
+            android:scrollbars="vertical"
+            android:padding="@dimen/margin_base"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/category_item_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constrainedHeight="true"
+            android:layout_marginTop="@dimen/margin_base_x2"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

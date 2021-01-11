@@ -2,7 +2,7 @@
     <string name="app_name">My App</string>
     <string name="login_text">LOGIN</string>
     <string name="register_text">REGISTER</string>
-    <string name="forgot_password_text">Forgot password\?</string>
+    <string name="forgot_password_text">Forgot password?</string>
     <string name="logo">Logo</string>
     <string name="strphone">Phone Number:</string>
     <string name="strdescript">Description:</string>
@@ -20,6 +20,7 @@
     <string name="login_password_hint">Password</string>
     <string name="account_acti_title">Personal Information</string>
     <string name="save_text">Save</string>
+    <string name="token">Token</string>
 
     <!--Account Fragment-->
     <string name="logout">LOGOUT</string>
@@ -58,4 +59,89 @@
     -->
     <string name="hello_world">Hello Square World!</string>
 
+    <!--Feature Fragment-->
+    <string name="categories">Categories</string>
+    <string name="latest">Latest</string>
+    <string name="free">Free</string>
+    <string name="best">Best</string>
+
+    <!--Course Item-->
+    <string name="course_description">Course Image</string>
+    <string name="course_name">Course Name</string>
+    <string name="course_price">Course Price</string>
+
+    <!--Course Fragment-->
+    <string name="course_fragment_title">Your Created Courses</string>
+    <string name="course_fragment_button">Create New Course</string>
+
+    <!--Course Detail-->
+    <string name="join_btn">Join</string>
+    <string name="joined_btn">Joined</string>
+    <string name="rate_btn">Rate</string>
+    <string name="overview_text">Overview Placeholder</string>
+    <string name="course_overview">Course Overview</string>
+    <string name="objective_text">Objective Placeholder</string>
+    <string name="course_object">Course Objectives</string>
+    <string name="course_details_title">Course Title</string>
+    <string name="related_course">Related Course</string>
+    <string name="user_rating">User Rating</string>
+    <string name="by">By:</string>
+    <string name="from">From:</string>
+    <string name="author_name">Author Name</string>
+    <string name="time_created">YYYY-MM-DD</string>
+    <string name="price">Price:</string>
+    <string name="write_comment_title">Write a comment</string>
+
+    <!--Search Fragment-->
+    <string name="search_hint">Search here</string>
+    <string name="result">Result</string>
+    <string name="search">Search</string>
+
+    <!--Cart Fragment-->
+    <string name="title">Your Cart</string>
+    <string name="pay">Pay</string>
+    <string name="total">Total:</string>
+    <string name="cart_price">0.000.000</string>
+    <string name="x">x</string>
+
+    <!--Pay Activity-->
+    <string name="card_input">Input Your Credit Card</string>
+
+    <!--Category Item Activity-->
+    <string name="category_title">Category Title</string>
+
+    <!--Forgot Password Activity-->
+    <string name="forgot_pass_title">Please Input Your Email</string>
+    <string name="email_hint">abc@123.com</string>
+    <string name="send">Send</string>
+
+    <!--Reset Password Activity-->
+    <string name="reset_pass_token">Token:</string>
+    <string name="reset_pass_new">New Password:</string>
+    <string name="reset_pass_update">Update</string>
+    <string name="reset_pass_title">Reset Password</string>
+
+    <!--Create Course-->
+    <string-array name="categories">
+        <item>Toán Tin</item>
+        <item>Công nghệ thông tin</item>
+        <item>Ngoại ngữ</item>
+    </string-array>
+
+    <string-array name="course_choice_fragment">
+        <item>Create your course</item>
+        <item>Joined course</item>
+    </string-array>
+
+    <!--Learning Courses-->
+    <string name="LearnCourses">Select lesson to begin</string>
+    <string name="Lesson">Lessons</string>
+    <string name="Documents">Documents</string>
+    <string name="Comments">Comments</string>
+    <string name="Quiz">Quiz</string>
+
+    <!--Item Lesson-->
+    <string name="ItemNumber">1</string>
+    <string name="ItemLesson">Lesson</string>
+    <string name="percent">%</string>
 </resources>

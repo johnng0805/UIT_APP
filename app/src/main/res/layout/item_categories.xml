@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="140dp"
+    android:layout_height="80dp"
+    android:background="@drawable/ctn_white_background_2"
+    app:cardCornerRadius="@dimen/margin_base"
+    android:layout_margin="@dimen/margin_base"
+    android:elevation="@dimen/elevation_fragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/devices"
+            android:scaleType="centerCrop"
+            android:id="@+id/item_categories_img"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/course_description"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/item_categories_name"
+            android:text="@string/course_description"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/gradient_filter"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_medium"
+            android:padding="@dimen/margin_base"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/margin_base"
+    android:elevation="@dimen/elevation_fragment"
+    android:layout_margin="@dimen/margin_base"
+    android:clipToPadding="false">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_document_title"
+        android:text="@string/ItemLesson"
+        android:textColor="@color/colorButton"
+        android:textSize="@dimen/text_14"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingVertical="@dimen/margin_base_x3"
+        android:paddingHorizontal="@dimen/margin_base_x4"/>
+
+</androidx.cardview.widget.CardView>

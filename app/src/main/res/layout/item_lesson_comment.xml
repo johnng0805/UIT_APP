@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/margin_base"
+    android:elevation="@dimen/elevation_fragment"
+    android:padding="@dimen/margin_base_x2"
+    android:clipToPadding="false"
+    android:layout_margin="@dimen/margin_base">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_base_x2">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:id="@+id/item_lesson_comment_avatar"
+            android:src="@drawable/devices" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/margin_base">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_lesson_comment_name"
+                android:text="@string/author_name"
+                android:textStyle="bold"
+                android:textColor="@color/colorButton"
+                android:textSize="@dimen/text_small" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_lesson_comment_date"
+                android:text="@string/time_created"
+                android:textSize="@dimen/text_12"
+                android:textColor="@color/colorAccent"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_lesson_comment_content"
+                android:text="@string/Comments"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

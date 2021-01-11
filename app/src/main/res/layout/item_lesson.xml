@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/margin_base"
+    android:id="@+id/item_lesson_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?android:selectableItemBackground"
+    android:foreground="?android:selectableItemBackground"
+    android:elevation="@dimen/elevation_fragment"
+    android:layout_margin="@dimen/margin_base">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/item_lesson_number"
+            android:text="@string/ItemNumber"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="@dimen/margin_base_x2"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:id="@+id/item_lesson_name"
+            android:text="@string/ItemLesson"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/colorButton"
+            android:paddingHorizontal="@dimen/margin_base"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

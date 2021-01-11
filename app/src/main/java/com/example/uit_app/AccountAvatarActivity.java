@@ -48,7 +48,7 @@ import retrofit2.Retrofit;
 
 
 public class AccountAvatarActivity extends AppCompatActivity {
-    Button galleryBtn, cameraBtn, saveBtn, backBtn;
+    Button galleryBtn, cameraBtn, saveBtn;
     ImageView avatar;
     Uri imageUri;
     Bitmap bitmap;
@@ -283,7 +283,6 @@ public class AccountAvatarActivity extends AppCompatActivity {
         galleryBtn = findViewById(R.id.gallery_btn);
         cameraBtn = findViewById(R.id.camera_btn);
         saveBtn = findViewById(R.id.avatar_save_button);
-        backBtn = findViewById(R.id.avatar_back_button);
         avatar = findViewById(R.id.imgview_avatar);
     }
 }
